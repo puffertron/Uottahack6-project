@@ -3,18 +3,28 @@ import math
 
 pygame.joystick.init()
 
+#get any joysticks that are connected to the machine
 joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
 
-delta_inputs = []
+delta_inputs_1 = []
+delta_inputs_2 = []
 
+#get the ddr pads, prolly should have some kind of verification sequence to make sure these r the pads
 def setupPads(): 
     pad1 = joysticks[0]
     pad2 = joysticks[1]
     return pad1, pad2
+
 cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
-def getPadInput(pad: pygame.joystick.Joystick):
-    global delta_inputs
+def getPadInput(pad: pygame.joystick.Joystick, pad_number):
+    global delta_inputs_1
+    global delta_inputs_2
+
+    if pad_number:
+        delta_inputs = delta_inputs_2
+    else:
+        delta_inputs = delta_inputs_1
 
     axis1 = pad.get_axis(0)
     axis2 = pad.get_axis(1) 
