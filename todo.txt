@@ -15,13 +15,13 @@ Classes:
   -update player info
   -check sequences
 
--Linked List class
+-Linked List class -Done
   -Node class
 
 Basic game loop
-1. Get Input
-2. Check if input is on time
-3. Update player state
+1. Get Input -Done
+2. Check if input is on time -Done
+3. Update player state -Done
 4. Compare player states
 5. Do output (damage, audio, off-balance)
 
@@ -35,9 +35,9 @@ Extra:
 2. Have different characters
 
 Music:
-1. Basic chords
+1. Basic chords -Done
 2. Background Music
-3. Damage noises (Cymbal)
+3. Damage noises (Cymbal) -50%
 4. Off-balance noises (warble)
 5. Layered Music
 
