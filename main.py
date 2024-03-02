@@ -16,7 +16,7 @@ def main():
 
 
     # Setting up some variables
-    ms_per_beat = 60000 / config.bpm
+    ms_per_beat = 60000 / config.BPM
     time_since_beat = 0 #Goes from 0 to ms_per_beat
     updated_this_beat = True #goes to false when time_since_beat resets, goes to true when Fight happens
     stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
@@ -47,10 +47,10 @@ def main():
         for player in [0,1]:
             playerInput = inputs[player]
             if len(playerInput) != 0:
-                if (time_since_beat < config.perfect_time_tol) or ((time_since_beat-ms_per_beat) > -config.perfect_time_tol):
+                if (time_since_beat < (config.PERFECT_TIME_TOL+config.TIME_OFFSET)) or ((time_since_beat-ms_per_beat) > (-config.PERFECT_TIME_TOL+config.TIME_OFFSET)):
                     print("You did PERFECT!!!!!!")
                     stances[player]["perfect"] += playerInput
-                elif (time_since_beat < config.good_time_tol) or ((time_since_beat-ms_per_beat) > -config.good_time_tol):
+                elif (time_since_beat < config.GOOD_TIME_TOL) or ((time_since_beat-ms_per_beat) > -config.GOOD_TIME_TOL):
                     print("Pretty Good!")
                     stances[player]["good"] += playerInput
                 else:
@@ -61,9 +61,9 @@ def main():
 
         
 
-        # Do things at specific times
+        # DO THINGS AT SPECIFIC TIMES
         # bit after beat, Send input to fight function every beat        
-        if (not updated_this_beat) and (time_since_beat > config.perfect_time_tol):
+        if (not updated_this_beat) and (time_since_beat > config.PERFECT_TIME_TOL):
             # Only ever update after window where input is accepted
             updated_this_beat = True
             Fight.danceBattle(stances)
@@ -71,7 +71,7 @@ def main():
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
         
-        # on beat
+        # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
             audio.metronome_sound.play()
