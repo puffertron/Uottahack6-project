@@ -5,7 +5,7 @@ pg.joystick.init()
 
 #the input names for each button!
 input_names = [
-        "nw", "n", "ne",
+        "nw",   "n", "ne",
         "w", "m", "e",
         "sw", "s", "se"
         ]
