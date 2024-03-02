@@ -31,7 +31,7 @@ class LinkedList:
         self.length += 1
 
         #Automatically delete the last node once the list has reached as certain size
-        while self.length > MAX_STANCE_MEMORY:
+        while self.length > config.MAX_STANCE_MEMORY:
             self.tail = self.tail.prev
             self.tail.next.prev = None
             self.tail.next = None
