@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-from State import State.players as players
+from State import players
 import audio
 import pygame as pg
-=======
-from State import players
->>>>>>> c0ead917c69d5b1b0ad86c3c34497d4dc1363bc4
+
 
 class Fight:
     """Holds current gamemode and does the logic on the stances to find out what happens"""
