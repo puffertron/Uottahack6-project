@@ -9,9 +9,9 @@ windowHeight = 500 #pxl?
 
 # Audio files
 METRONOME_SOUND_FILE = "sounds/kick.wav"
-MISS_SOUND_FILE = "sounds/womp.wav"
+MISS_SOUND_FILE = "sounds/buzzer.wav"
 HIT_SOUND_FILE = "sounds/big_cymbal.wav"
-PARRY_SOUND_FILE = "sounds/kick.wav"
+PARRY_SOUND_FILE = "sounds/clink.wav"
 FUMBLE_SOUND_FILE = "sounds/womp.wav"
 ATTACK_SOUND_FILE = "sounds/tick.wav"
 DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
@@ -21,4 +21,4 @@ DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
 BPM = 60 #1000ms per beat
 GOOD_TIME_TOL = 150 #ms
 PERFECT_TIME_TOL = 15 #ms
-TIME_OFFSET = 20 #ms, positive number shifts all timing hit windows later (audio plays earlier)
+TIME_OFFSET = 0 #ms, positive number shifts all timing hit windows later (audio plays earlier)

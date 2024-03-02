@@ -64,6 +64,7 @@ def main():
             # Only ever update after window where input is accepted
             updated_this_beat = True
             Fight.danceBattle(stances)
+            print(time_since_beat)
             print()
             #TODO - deal with return value and move it to proper place
             # if returnValue == True:
