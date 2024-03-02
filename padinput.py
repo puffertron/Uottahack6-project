@@ -1,8 +1,9 @@
-import pygame
+import pg as pg
 import math
 
-pygame.joystick.init()
+pg.joystick.init()
 
+#the input names for each button!
 input_names = [
         "nw", "n", "ne",
         "w", "m", "e",
@@ -10,13 +11,15 @@ input_names = [
         ]
 
 #get any joysticks that are connected to the machine
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+joysticks = [pg.joystick.Joystick(x) for x in range(pg.joystick.get_count())]
 
 delta_inputs_1 = []
 delta_inputs_2 = []
 
 #get the ddr pads, prolly should have some kind of verification sequence to make sure these r the pads
-def setupPads(): 
+
+def setupPads() -> tuple[pg.joystick.Joystick, pg.joystick.Joystick]:
+    """Setup dance pad controllers. Returns two pg Joystick objects"""
     pad1 = joysticks[0]
     pad2 = joysticks[1]
     return pad1, pad2
@@ -25,7 +28,8 @@ cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
 
 
-def getPadInput(pad: pygame.joystick.Joystick, pad_number):
+def getPadInput(pad: pg.joystick.Joystick, pad_number) -> tuple[list, list]:
+    """get input for a dance pad. returns raw input (List of int/bool) and inputs pressed this tick (list of strings)"""
     global delta_inputs_1
     global delta_inputs_2
 
@@ -41,6 +45,7 @@ def getPadInput(pad: pygame.joystick.Joystick, pad_number):
     for i in cornerbuttons:
         buttons.append(pad.get_button(i))
 
+    #list of raw inputs, in int/bool form
     inputs = [ 
         buttons[1],                 axis2 < -0.5 or axis2 == 0, buttons[0], 
         axis1 > 0.5 or axis1 == 0, None,                   axis1 < -0.5 or axis1 == 0,
@@ -49,6 +54,7 @@ def getPadInput(pad: pygame.joystick.Joystick, pad_number):
     
     input_strings = []
     just_pressed_input_strings= []
+    #generate list of strings for just pressed buttons
     for i, input in enumerate(inputs):
         if input:
             #print("woot")
@@ -72,18 +78,19 @@ def getPadInput(pad: pygame.joystick.Joystick, pad_number):
     return inputs, just_pressed_input_strings
 
 def drawPadInput(input, just_pressed):
-    padsurf = pygame.surface.Surface((90,90))
+    """Draws a representation of a pad on the screen."""
+    padsurf = pg.surface.Surface((90,90)) # big surface for a 9 panel pad
     padsurf.fill((200,200,0))
     padrect = padsurf.get_rect()
     
     panels = []
     for i in range(0,9):
         if i != 4:
-            p = pygame.surface.Surface((30,30))
+            p = pg.surface.Surface((30,30)) # small surface to represent 1 square
             p.fill((50*(i%2),50*(i%2),50*(i%2)))
-            if input[i]:
+            if input[i]: #turn white if pressed
                 p.fill((255*(i%2),255,255))
-            if input_names[i] in just_pressed:
+            if input_names[i] in just_pressed: #flash red if step is just pressed
                 p.fill((255,0,0))
             padsurf.blit(p, p.get_rect().move(math.floor(i/3)*30,(i%3)*30))
 
@@ -91,5 +98,6 @@ def drawPadInput(input, just_pressed):
     return padsurf
 
 def drawPads(screen, rawinputs, just_pressed):
-    screen.blit(pygame.transform.flip(drawPadInput(rawinputs[0], just_pressed[0]),1,1), pygame.Rect(50,50,90,90))
-    screen.blit(drawPadInput(rawinputs[1], just_pressed[1]), pygame.Rect(50+90+20,50,90,90))
+    """Draws the debug pads"""
+    screen.blit(pg.transform.flip(drawPadInput(rawinputs[0], just_pressed[0]),1,1), pg.Rect(50,50,90,90))
+    screen.blit(drawPadInput(rawinputs[1], just_pressed[1]), pg.Rect(50+90+20,50,90,90))
