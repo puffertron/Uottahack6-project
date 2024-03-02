@@ -14,7 +14,7 @@ class Fight:
                            "N": "N",
                            "NE": "E"}
     @classmethod
-    def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]] -> bool:
+    def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]) -> bool:
         """Takes a list of stances and updates game state. Player history will be a list of attacks."""
         stances = (inputs[0]["Perfect"] + inputs[0]["Good"], inputs[1]["Perfect"] + inputs[1]["Good"]) # Consider only pressed inputs neglecting quality
 
@@ -25,8 +25,8 @@ class Fight:
             for move in stances[attacker]: # Add valid attacks chosen
                 if move in DODGES_FOR_ATTACKS.keys():
                     attacks.append(move)
-            for move in stances[not attacker]
-                if move in PARRIES_FOR_ATTACKS.values()
+            for move in stances[not attacker]:
+                if move in PARRIES_FOR_ATTACKS.values():
                     parries.append(move)
             
             parried = True

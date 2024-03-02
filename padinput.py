@@ -23,6 +23,8 @@ def setupPads():
 
 cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
+
+
 def getPadInput(pad: pygame.joystick.Joystick, pad_number):
     global delta_inputs_1
     global delta_inputs_2
