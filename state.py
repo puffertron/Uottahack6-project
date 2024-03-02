@@ -1,0 +1,1 @@
+# Holds state of game. Is imported by most other files, does not import others
