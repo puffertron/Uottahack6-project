@@ -14,8 +14,10 @@ class Fight:
                            "N": "N",
                            "NE": "E"}
     @classmethod
-    def danceBattle(cls, stances: list[list[str]]) -> bool:
-        """Takes a list of stances and updates game state"""
+    def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]] -> bool:
+        """Takes a list of stances and updates game state. Player history will be a list of attacks."""
+        stances = (inputs[0]["Perfect"] + inputs[0]["Good"], inputs[1]["Perfect"] + inputs[1]["Good"]) # Consider only pressed inputs neglecting quality
+
         if aggressive: # For aggressive beats
             attacks = [] # Create a list of current attacks
             parries = [] # Create a list of current parries
