@@ -18,11 +18,32 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     @classmethod
-    def metronome(cls):
+    def onBeat(cls):
         if cls.aggressive:
             audio.metronome.play(audio.beep_sound)
         else:
             audio.metronome.play(audio.boop_sound)
+    
+    @classmethod
+    def onOffBeat(cls):
+        pass
+
+    @classmethod
+    def onInput(cls, playerInput: list[str], player: bool):
+        is_attack = False
+        for move in playerInput:
+            if move in cls.DODGES_FOR_ATTACKS.keys():
+                is_attack = True
+
+        if player == cls.attacker and is_attack:
+            audio.ticker.play(audio.attack_sound)
+            print("\nattack!\n")
+        elif player == 0:
+            audio.ticker.play(audio.player0_chord)
+        else:
+            audio.ticker.play(audio.player1_chord)
+ 
+
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
@@ -73,8 +94,6 @@ class Fight:
                 return
             else: # Otherwise, save last attack
                 State.players[cls.attacker].history.insertAtFront(attacks) # Log attack that needs to be blocked
-                audio.ticker.play(audio.attack_sound)
-                print("\nattack!\n")
 
         else: # For defense beats
             print("defending beat. Dodges:",dodges)
@@ -93,7 +112,7 @@ class Fight:
                         cls.waiting = True
                         return # If failed to dodge
 
-        audio.ticker.play(audio.dodge_sound)
-        print("\ndodge!\n")
+            audio.ticker.play(audio.dodge_sound)
+            print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
-        return # Return False because no hit was recorded
+        return
