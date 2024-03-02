@@ -16,10 +16,10 @@ MISS_SOUND_FILE = "sounds/buzzer.wav"
 HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 PARRY_SOUND_FILE = "sounds/clink.wav"
 FUMBLE_SOUND_FILE = "sounds/womp.wav"
-ATTACK_SOUND_FILE = "sounds/tick.wav"
+ATTACK_SOUND_FILE = "sounds/kick.wav"
 DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
-P0CHORD_FILE = "sounds/tick.wav"
-P1CHORD_FILE = "sounds/tick.wav"
+P0CHORD_FILE = "sounds/kick.wav"
+P1CHORD_FILE = "sounds/kick.wav"
 
 # Audio
 BPM = 120 #1000ms per beat

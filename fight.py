@@ -17,6 +17,7 @@ class Fight:
     PARRIES_FOR_ATTACKS = {"nw": "ne",
                            "n": "n",
                            "ne": "nw"}
+    queued_sound = None
     @classmethod
     def onBeat(cls):
         if cls.aggressive:
@@ -26,7 +27,9 @@ class Fight:
     
     @classmethod
     def onOffBeat(cls):
-        pass
+        if cls.queued_sound:
+            audio.SFX.play(cls.queued_sound)
+            cls.queued_sound = None
 
     @classmethod
     def onInput(cls, playerInput: list[str], player: bool):
@@ -36,12 +39,12 @@ class Fight:
                 is_attack = True
 
         if player == cls.attacker and is_attack:
-            audio.ticker.play(audio.attack_sound)
+            audio.player_voices[player].play(audio.attack_sound)
             print("\nattack!\n")
         elif player == 0:
-            audio.ticker.play(audio.player0_chord)
+            audio.player_voices[player].play(audio.player0_chord)
         else:
-            audio.ticker.play(audio.player1_chord)
+            audio.player_voices[player].play(audio.player1_chord)
  
 
 
@@ -83,11 +86,11 @@ class Fight:
             if parried: # If attack was parried, lose advantage (also happens if no there was no attack)
                 State.players[cls.attacker].history.insertAtFront([])
                 if len(attacks) == 0:
-                    audio.ticker.play(audio.fumble_sound)
+                    cls.queued_sound = audio.fumble_sound
                     print("\nfumble!\n")
                     cls.waiting = True
                 else:
-                    audio.ticker.play(audio.parry_sound)
+                    cls.queued_sound = audio.parry_sound
                     print("\nparry!\n")
                 cls.attacker = not cls.attacker
                 cls.aggressive = True
@@ -105,14 +108,14 @@ class Fight:
                     if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         dodged = False
-                        audio.ticker.play(audio.hit_sound)
+                        queued_sound = audio.hit_sound
                         print("\nhit!\n")
                         cls.attacker = not cls.attacker
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
 
-            audio.ticker.play(audio.dodge_sound)
+            queued_sound = audio.dodge_sound
             print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return
