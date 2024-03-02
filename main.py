@@ -44,12 +44,15 @@ def main():
         for player in [0,1]:
             playerInput = inputs[player]
             if len(playerInput) != 0:
+                print("Input received:", time_since_beat)
                 if (time_since_beat < (config.PERFECT_TIME_TOL+config.TIME_OFFSET)) or ((time_since_beat-ms_per_beat) > (-config.PERFECT_TIME_TOL+config.TIME_OFFSET)):
                     print("You did PERFECT!!!!!!")
                     stances[player]["perfect"] += playerInput
-                elif (time_since_beat < config.GOOD_TIME_TOL) or ((time_since_beat-ms_per_beat) > -config.GOOD_TIME_TOL):
+                    Fight.onInput(playerInput, player)
+                elif (time_since_beat < config.GOOD_TIME_TOL+config.TIME_OFFSET) or ((time_since_beat-ms_per_beat) > (-config.GOOD_TIME_TOL+config.TIME_OFFSET)):
                     print("Pretty Good!")
                     stances[player]["good"] += playerInput
+                    Fight.onInput(playerInput, player)
                 else:
                     print("nah, you missed")
                     audio.buzzer.play(audio.miss_sound)
@@ -58,13 +61,16 @@ def main():
 
         
 
+        #print(time_since_beat)
         # DO THINGS AT SPECIFIC TIMES
         # bit after beat, Send input to fight function every beat        
-        if (not updated_this_beat) and (time_since_beat > config.PERFECT_TIME_TOL):
+        if (not updated_this_beat) and (time_since_beat > config.GOOD_TIME_TOL + config.TIME_OFFSET):
             # Only ever update after window where input is accepted
             updated_this_beat = True
+
+            print("before danceBattle time: ", time_since_beat)
             Fight.danceBattle(stances)
-            print(time_since_beat)
+            print("after danceBattle time: ", time_since_beat)
             print()
             #TODO - deal with return value and move it to proper place
             # if returnValue == True:
@@ -81,7 +87,7 @@ def main():
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
             #audio.ticker.play(audio.metronome_sound)
-            Fight.metronome()
+            Fight.onBeat()
             updated_this_beat = False
         
 
