@@ -27,35 +27,44 @@ def main():
             elif event.type == pg.KEYDOWN:
                 if event.unicode == "a":
                     print(pg.time.get_ticks())
-        
-
             # elif event.type == pg.KEYDOWN:
             #     if event.unicode == "a":
             #         print(time_since_beat)
-            #         if (time_since_beat < config.perfect_time_tol) or ((time_since_beat-ms_per_beat) > -config.perfect_time_tol):
-            #             print("You did PERFECT!!!!!!")
-            #             TODO - add to list of perfects
-            #         elif (time_since_beat < config.good_time_tol) or ((time_since_beat-ms_per_beat) > -config.good_time_tol):
-            #             print("Pretty Good!")
-            #         else:
-            #             print("nah, you missed")
-        screen.fill("purple")
+                    
+        # names of dict keys are 'good', 'perfect', 'held', each holds what inputs happened this beat, gets reset after passed to danceBattle
+        stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
         
-        # TODO - get input
+        # Get newly pressed input (& what buttons were HELD TODO)
         pad1, pad2, = padinput.setupPads()
         pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1, 0)
         pad2_raw_input, pad2_strings_input = padinput.getPadInput(pad2, 1)
-        padinput.drawPads(screen, (pad1_raw_input, pad2_raw_input), (pad1_strings_input, pad2_strings_input))
+        inputs = [pad1_strings_input, pad2_strings_input]
 
-        todo = ({"test":[["",""],["",""]]},{"test":[["",""],["",""]]})
+        # When new input, check to see if at great time
+        # TODO - add ability for HELD stances
+        for player in [0,1]:
+            playerInput = inputs[player]
+            if len(playerInput) != 0:
+                if (time_since_beat < config.perfect_time_tol) or ((time_since_beat-ms_per_beat) > -config.perfect_time_tol):
+                    print("You did PERFECT!!!!!!")
+                    stances[player]["perfect"] += playerInput
+                elif (time_since_beat < config.good_time_tol) or ((time_since_beat-ms_per_beat) > -config.good_time_tol):
+                    print("Pretty Good!")
+                    stances[player]["good"] += playerInput
+                else:
+                    print("nah, you missed")
+                    #Make womp womp sound
 
-        #when new input, check to see if at great time (code commented above when press 'a')
+        
+
+        
+
 
         # Send input to fight function every beat        
         if (not updated_this_beat) and (time_since_beat > config.perfect_time_tol):
             # Only ever update after window where input is accepted
             updated_this_beat = True
-            Fight.danceBattle(todo)
+            Fight.danceBattle(stances)
         
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
@@ -67,6 +76,10 @@ def main():
         # time_since_beat = pg.time.get_ticks() % ms_per_beat
         
 
+        #Update Visuals
+        screen.fill("purple")
+
+        padinput.drawPads(screen, (pad1_raw_input, pad2_raw_input), (pad1_strings_input, pad2_strings_input))
 
         pg.display.flip()
         time_since_beat += clock.tick(120)
