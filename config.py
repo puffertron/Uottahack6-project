@@ -7,7 +7,8 @@ MAX_STANCE_MEMORY = 16
 windowWidth = 500 #pxl?
 windowHeight = 500 #pxl?
 
-
+# Audio files
+HIT_SOUND_FILE = "sounds/kick.wav"
 
 # Audio
 
