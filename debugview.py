@@ -11,8 +11,8 @@ pygame.joystick.init()
 
 joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
 
-pad1 = joysticks[0]
-pad2 = joysticks[1]
+pad0 = joysticks[0]
+pad1 = joysticks[1]
 cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
 def getPadInput(pad: pygame.joystick.Joystick):
@@ -78,8 +78,8 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
     
-    i1, s1 =getPadInput(pad1)
-    i2, s2 = getPadInput(pad2)
+    i1, s1 =getPadInput(pad0)
+    i2, s2 = getPadInput(pad1)
     screen.blit(pygame.transform.flip(drawPadInput(i1),1,1), pygame.Rect(50,50,90,90))
     screen.blit(drawPadInput(i2), pygame.Rect(50+90+20,50,90,90))
     print(s1)
