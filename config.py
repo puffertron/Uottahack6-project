@@ -18,6 +18,8 @@ PARRY_SOUND_FILE = "sounds/clink.wav"
 FUMBLE_SOUND_FILE = "sounds/womp.wav"
 ATTACK_SOUND_FILE = "sounds/tick.wav"
 DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
+P0CHORD_FILE = "sounds/tick.wav"
+P1CHORD_FILE = "sounds/tick.wav"
 #FUMBLE_SOUND_FILE = ""
 
 # Audio

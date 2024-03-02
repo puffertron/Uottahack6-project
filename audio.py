@@ -13,6 +13,9 @@ hit_sound = pg.mixer.Sound(config.HIT_SOUND_FILE)
 parry_sound = pg.mixer.Sound(config.PARRY_SOUND_FILE)
 fumble_sound = pg.mixer.Sound(config.FUMBLE_SOUND_FILE)
 
+player0_chord = pg.mixer.Sound(config.P0CHORD_FILE)
+player1_chord = pg.mixer.Sound(config.P1CHORD_FILE)
+
 metronome = pg.mixer.Channel(0)
 ticker = pg.mixer.Channel(1)
 buzzer = pg.mixer.Channel(2)
