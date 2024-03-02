@@ -9,6 +9,10 @@ windowHeight = 500 #pxl?
 
 # Audio files
 HIT_SOUND_FILE = "sounds/kick.wav"
+PARRY_SOUND_FILE = "sounds/kick.wav"
+AGGRESSIVE_SOUND_FILE = "sounds/metronome_on_beat.wav"
+DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat"
+#FUMBLE_SOUND_FILE = ""
 
 # Audio
 
