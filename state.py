@@ -7,3 +7,5 @@ class State:
     player0: Player = None
     player1: Player = None
     players = [player0,player1]
+
+    #TODO - add combo things
