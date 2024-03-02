@@ -1,1 +1,43 @@
-- make the game
+
+GAME:
+Classes:
+-Player class:
+  -stances array (for previous stances)
+  -Music information
+
+-Music class
+
+-State:
+  -current combo
+  -2 players
+
+-Fight:
+  -update player info
+  -check sequences
+
+-Linked List class
+  -Node class
+
+Basic game loop
+1. Get Input
+2. Check if input is on time
+3. Update player state
+4. Compare player states
+5. Do output (damage, audio, off-balance)
+
+Important extras:
+1. Multiple gamemodes
+2. Sequences
+3. Extra rhythms/difficulties
+
+Extra:
+1. Tutorial system
+2. Have different characters
+
+Music:
+1. Basic chords
+2. Background Music
+3. Damage noises (Cymbal)
+4. Off-balance noises (warble)
+5. Layered Music
+
