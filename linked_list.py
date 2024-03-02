@@ -7,6 +7,10 @@ class Node:
         self.data = data
         self.next = None
         self.prev = None
+    
+    #Get the data from node
+    def getData(self):
+        return self.data
 
 #Linked list class
 class LinkedList:
@@ -67,3 +71,5 @@ class LinkedList:
             return
         
         return node.next
+    
+    
