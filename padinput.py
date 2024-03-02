@@ -1,4 +1,4 @@
-import pg as pg
+import pygame as pg
 import math
 
 pg.joystick.init()
@@ -13,16 +13,16 @@ input_names = [
 #get any joysticks that are connected to the machine
 joysticks = [pg.joystick.Joystick(x) for x in range(pg.joystick.get_count())]
 
+delta_inputs_0 = []
 delta_inputs_1 = []
-delta_inputs_2 = []
 
 #get the ddr pads, prolly should have some kind of verification sequence to make sure these r the pads
 
 def setupPads() -> tuple[pg.joystick.Joystick, pg.joystick.Joystick]:
     """Setup dance pad controllers. Returns two pg Joystick objects"""
-    pad1 = joysticks[0]
-    pad2 = joysticks[1]
-    return pad1, pad2
+    pad0 = joysticks[0]
+    pad1 = joysticks[1]
+    return pad0, pad1
 
 cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
@@ -30,13 +30,13 @@ cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
 def getPadInput(pad: pg.joystick.Joystick, pad_number) -> tuple[list, list]:
     """get input for a dance pad. returns raw input (List of int/bool) and inputs pressed this tick (list of strings)"""
+    global delta_inputs_0
     global delta_inputs_1
-    global delta_inputs_2
 
     if pad_number:
-        delta_inputs = delta_inputs_2
-    else:
         delta_inputs = delta_inputs_1
+    else:
+        delta_inputs = delta_inputs_0
 
     axis1 = pad.get_axis(0)
     axis2 = pad.get_axis(1) 
@@ -69,9 +69,9 @@ def getPadInput(pad: pg.joystick.Joystick, pad_number) -> tuple[list, list]:
     
     delta_inputs = input_strings
     if pad_number:
-        delta_inputs_2 = input_strings
-    else:
         delta_inputs_1 = input_strings
+    else:
+        delta_inputs_0 = input_strings
 
     #print( "pad ", pad_number,just_pressed_input_strings, delta_inputs, input_strings, inputs)
     
