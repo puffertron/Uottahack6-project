@@ -11,4 +11,6 @@ windowHeight = 100 #pxl?
 
 # Audio
 
-bpm = 60
+bpm = 60 #1000ms per beat
+great_time_tol = 90 #ms
+perfect_time_tol = 15 #ms
