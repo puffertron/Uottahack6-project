@@ -1,4 +1,4 @@
-from State import State.players as players
+from State import players
 
 class Fight:
     """Holds current gamemode and does the logic on the stances to find out what happens"""
@@ -31,7 +31,7 @@ class Fight:
             
             parried = True
             for attack in attacks: # Check if defender successfully parried
-                if not (parries contains PARRIES_FOR_ATTACKS[attack]):
+                if not (parries in PARRIES_FOR_ATTACKS[attack]):
                     parried = False
 
             if parried: # If attack was parried, lose advantage
@@ -49,7 +49,7 @@ class Fight:
             
             dodged = True
             for attack in players[attacker].history.getHead().getData(): # Check if defender successfully dodged
-                if not (dodges contains DODGES_FOR_ATTACKS[attack]):
+                if not (dodges in DODGES_FOR_ATTACKS[attack]):
                     dodged = False
                     return not dodged # If failed to dodge, return True to record a hit
 
