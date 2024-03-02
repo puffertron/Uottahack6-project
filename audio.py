@@ -16,6 +16,11 @@ fumble_sound = pg.mixer.Sound(config.FUMBLE_SOUND_FILE)
 player0_chord = pg.mixer.Sound(config.P0CHORD_FILE)
 player1_chord = pg.mixer.Sound(config.P1CHORD_FILE)
 
-metronome = pg.mixer.Channel(0)
-ticker = pg.mixer.Channel(1)
-buzzer = pg.mixer.Channel(2)
+player0_voice = pg.mixer.Channel(0)
+player1_voice = pg.mixer.Channel(1)
+SFX = pg.mixer.Channel(2)
+metronome = pg.mixer.Channel(3)
+buzzer = pg.mixer.Channel(4)
+backtrack = pg.mixer.Channel(5)
+
+player_voices = [player0_voice, player1_voice]
