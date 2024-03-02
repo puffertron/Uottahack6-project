@@ -40,7 +40,7 @@ class Fight:
             if parried: # If attack was parried, lose advantage
                 players[attacker].history.insertAtFront([])
                 attacker = not attacker
-                if not len(attacks) = 0:
+                if not len(attacks) == 0:
                     audio.parry.play()
             else: #otherwise, save last attack
                 players[attacker].history.insertAtFront(attacks)
