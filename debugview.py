@@ -60,6 +60,12 @@ def drawPadInput(input):
 
     return padsurf
         
+def drawPads(screen, pads):
+    i1, s1 =getPadInput(pads[0])
+    i2, s2 = getPadInput(pads[1])
+    screen.blit(pygame.transform.flip(drawPadInput(i1),1,1), pygame.Rect(50,50,90,90))
+    screen.blit(drawPadInput(i2), pygame.Rect(50+90+20,50,90,90))
+    #print(s1)
 
 while running:
 
@@ -71,7 +77,7 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
-
+    
     i1, s1 =getPadInput(pad1)
     i2, s2 = getPadInput(pad2)
     screen.blit(pygame.transform.flip(drawPadInput(i1),1,1), pygame.Rect(50,50,90,90))

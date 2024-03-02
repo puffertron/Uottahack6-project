@@ -1,6 +1,7 @@
 import pygame as pg
 from setup import setup
-import config
+import config, padinput
+import math
 from fight import Fight
 
 
@@ -23,6 +24,11 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 running = False
+            elif event.type == pg.KEYDOWN:
+                if event.unicode == "a":
+                    print(pg.time.get_ticks())
+        
+
             # elif event.type == pg.KEYDOWN:
             #     if event.unicode == "a":
             #         print(time_since_beat)
@@ -39,9 +45,16 @@ def main():
         #when new input, check to see if at great time (code commented above when press 'a')
 
         # TODO - send input to Fight function
+        screen.fill("purple")
+
+        # TODO - get input
+        pad1, pad2, = padinput.setupPads()
+        pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1, 0)
+        pad2_raw_input, pad2_strings_input = padinput.getPadInput(pad2, 1)
+        padinput.drawPads(screen, (pad1_raw_input, pad2_raw_input))
+
         todo = ({"test":[["",""],["",""]]},{"test":[["",""],["",""]]})
 
-        time_since_beat += clock.tick()
         if (not updated_this_beat) and (time_since_beat > config.perfect_time_tol):
             # Only ever update after window where input is accepted
             updated_this_beat = True
@@ -56,16 +69,10 @@ def main():
         # last_time_since_beat = time_since_beat
         # time_since_beat = pg.time.get_ticks() % ms_per_beat
         
-        
 
 
-        
-
-    
-    
-
-
-
+        pg.display.flip()
+        time_since_beat += clock.tick(120)
 
 
 
