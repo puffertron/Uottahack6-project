@@ -47,8 +47,6 @@ def main():
         pad2_raw_input, pad2_strings_input = padinput.getPadInput(pad2, 1)
         padinput.drawPads(screen, (pad1_raw_input, pad2_raw_input))
 
-        
-
         # TODO - send input to Fight function
 
 

@@ -58,8 +58,12 @@ def getPadInput(pad: pygame.joystick.Joystick, pad_number):
         if press in delta_inputs:
             just_pressed_input_strings.remove(press)
     
-    delta_inputs = input_strings
-    print(just_pressed_input_strings, delta_inputs, input_strings, inputs)
+    if pad_number:
+        delta_inputs_2 = input_strings
+    else:
+        delta_inputs_1 = input_strings
+
+    print( "pad ", pad_number,just_pressed_input_strings, delta_inputs, input_strings, inputs)
     
     return inputs, just_pressed_input_strings
 
