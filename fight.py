@@ -19,12 +19,8 @@ class Fight:
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]) -> bool:
         """Takes a list of stances and updates game state. Player history will be a list of attacks."""
-<<<<<<< HEAD
-        stances = (inputs[0]["Perfect"] + inputs[0]["Good"], inputs[1]["Perfect"] + inputs[1]["Good"]) # Consider only pressed inputs neglecting quality
-        audio.parry.play()
-=======
         stances = (inputs[0]["perfect"] + inputs[0]["good"], inputs[1]["perfect"] + inputs[1]["good"]) # Consider only pressed inputs neglecting quality
->>>>>>> 03f3900e0524f8c219ee2e28599357a659782851
+        audio.parry.play()
 
         if cls.aggressive: # For aggressive beats
             attacks = [] # Create a list of current attacks
