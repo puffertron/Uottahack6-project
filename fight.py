@@ -1,4 +1,4 @@
-from State import State.player0 as player0, State.player1 as player1
+from State import State.players as players
 
 class Fight:
     """Holds current gamemode and does the logic on the stances to find out what happens"""
@@ -6,12 +6,50 @@ class Fight:
 
     # Gamemode 1: Dance battle
     attacker = 0
-    attack_beat = True
+    aggressive = True
+    DODGES_FOR_ATTACKS= {"NW": "SW",
+                          "N": "S",
+                          "NE": "SE"}
+    PARRIES_FOR_ATTACKS = {"NW": "W",
+                           "N": "N",
+                           "NE": "E"}
     @classmethod
-    def danceBattle(cls, stance0: list[str], stance1: list[str]):
-        player0.addStance(stance0) # TODO rename to actual
-        player1.addStance(stance1) # TODO rename to actual
+    def danceBattle(cls, stances: list[list[str]]) -> bool:
+        """Takes a list of stances and updates game state"""
+        if aggressive: # For aggressive beats
+            attacks = [] # Create a list of current attacks
+            parries = [] # Create a list of current parries
 
-        # TODO add the logic
+            for move in stances[attacker]: # Add valid attacks chosen
+                if move in DODGES_FOR_ATTACKS.keys():
+                    attacks.append(move)
+            for move in stances[not attacker]
+                if move in PARRIES_FOR_ATTACKS.values()
+                    parries.append(move)
+            
+            parried = True
+            for attack in attacks: # Check if defender successfully parried
+                if not (parries contains PARRIES_FOR_ATTACKS[attack]):
+                    parried = False
 
-        cls.attack_beat = not cls.attack_beat
+            if parried: # If attack was parried, lose advantage
+                players[attacker].history.insertAtFront([])
+                attacker = not attacker
+            else: #otherwise, save last attack
+                players[attacker].history.insertAtFront(attacks)
+
+        else: # For defense beats
+            dodges = [] # Create a list of current dodges
+
+            for move in stances[not attacker]: # Add valid dodges chosen
+                if move in DODGES_FOR_ATTACKS.values():
+                    dodges.append(move)
+            
+            dodged = True
+            for attack in players[attacker].history.getHead().getData(): # Check if defender successfully dodged
+                if not (dodges contains DODGES_FOR_ATTACKS[attack]):
+                    dodged = False
+                    return not dodged # If failed to dodge, return True to record a hit
+
+        cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
+        return False # Return False because no hit should be recorded
