@@ -19,7 +19,10 @@ class Fight:
                            "ne": "w"}
     @classmethod
     def metronome(cls):
-        audio.
+        if cls.aggressive:
+            audio.metronome.play(audio.beep_sound)
+        else:
+            audio.metronome.play(audio.boop_sound)
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
