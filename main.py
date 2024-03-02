@@ -52,7 +52,7 @@ def main():
                     stances[player]["good"] += playerInput
                 else:
                     print("nah, you missed")
-                    #audio.miss_sound.play()
+                    audio.buzzer.play(audio.miss_sound)
 
         
 
@@ -64,6 +64,7 @@ def main():
             # Only ever update after window where input is accepted
             updated_this_beat = True
             Fight.danceBattle(stances)
+            print()
             #TODO - deal with return value and move it to proper place
             # if returnValue == True:
             #     print("danceBattle returned TRUE! Game is over, you got hit, whomp whomp")
