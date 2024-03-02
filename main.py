@@ -39,14 +39,8 @@ def main():
             #             print("Pretty Good!")
             #         else:
             #             print("nah, you missed")
-        
-        # TODO - get input
-
-        #when new input, check to see if at great time (code commented above when press 'a')
-
-        # TODO - send input to Fight function
         screen.fill("purple")
-
+        
         # TODO - get input
         pad1, pad2, = padinput.setupPads()
         pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1, 0)
@@ -55,6 +49,9 @@ def main():
 
         todo = ({"test":[["",""],["",""]]},{"test":[["",""],["",""]]})
 
+        #when new input, check to see if at great time (code commented above when press 'a')
+
+        # Send input to fight function every beat        
         if (not updated_this_beat) and (time_since_beat > config.perfect_time_tol):
             # Only ever update after window where input is accepted
             updated_this_beat = True
