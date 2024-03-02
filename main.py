@@ -20,7 +20,7 @@ def main():
     time_since_beat = 0 #Goes from 0 to ms_per_beat
     updated_this_beat = True #goes to false when time_since_beat resets, goes to true when Fight happens
     stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
-        
+    
 
     while running:
         
@@ -52,7 +52,7 @@ def main():
                     stances[player]["good"] += playerInput
                 else:
                     print("nah, you missed")
-                    audio.miss_sound.play()
+                    #audio.miss_sound.play()
 
         
 
@@ -63,14 +63,14 @@ def main():
         if (not updated_this_beat) and (time_since_beat > config.PERFECT_TIME_TOL):
             # Only ever update after window where input is accepted
             updated_this_beat = True
-            returnValue = Fight.danceBattle(stances)
-            #TODO - deal with return value
-            if returnValue == True:
-                print("danceBattle returned TRUE! Game is over, you got hit, whomp whomp")
-            elif returnValue == False:
-                print("danceBattle returned FALSE, no one got hit, keep going!")
-            else:
-                print("someone changed the return value of dance battle to a non boolean, programmers, fix me in main.py")
+            Fight.danceBattle(stances)
+            #TODO - deal with return value and move it to proper place
+            # if returnValue == True:
+            #     print("danceBattle returned TRUE! Game is over, you got hit, whomp whomp")
+            # elif returnValue == False:
+            #     print("danceBattle returned FALSE, no one got hit, keep going!")
+            # else:
+            #     print("someone changed the return value of dance battle to a non boolean, programmers, fix me in main.py")
             # Clear stances
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
@@ -78,7 +78,7 @@ def main():
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            audio.metronome_sound.play()
+            audio.ticker.play(audio.metronome_sound)
             updated_this_beat = False
         
 

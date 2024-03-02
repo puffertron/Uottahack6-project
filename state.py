@@ -6,6 +6,6 @@ class State:
     """State holds the changing state of the game, it is set up in setup then used and changed by other files"""
     player0: Player = None
     player1: Player = None
-    players = []
+    players: list[Player] = []
 
     #TODO - add combo things
