@@ -18,6 +18,10 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     @classmethod
+    def metronome(cls):
+        audio.
+
+    @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
         """Takes a list of stances and updates game state. Player history will be a list of attacks."""
         #TODO make this only work in gamemode 1, add comment describing the game mode (maybe a tutorial text file?)

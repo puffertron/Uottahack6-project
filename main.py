@@ -80,7 +80,7 @@ def main():
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            audio.metronome.play(audio.metronome_sound)
+            #audio.ticker.play(audio.metronome_sound)
             updated_this_beat = False
         
 
