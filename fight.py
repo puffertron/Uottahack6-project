@@ -14,9 +14,9 @@ class Fight:
     DODGES_FOR_ATTACKS= {"nw": "se",
                           "n": "s",
                           "ne": "sw"}
-    PARRIES_FOR_ATTACKS = {"nw": "e",
+    PARRIES_FOR_ATTACKS = {"nw": "ne",
                            "n": "n",
-                           "ne": "w"}
+                           "ne": "nw"}
     @classmethod
     def metronome(cls):
         if cls.aggressive:
@@ -63,14 +63,18 @@ class Fight:
                 State.players[cls.attacker].history.insertAtFront([])
                 if len(attacks) == 0:
                     audio.ticker.play(audio.fumble_sound)
+                    print("\nfumble!\n")
+                    cls.waiting = True
                 else:
                     audio.ticker.play(audio.parry_sound)
+                    print("\nparry!\n")
                 cls.attacker = not cls.attacker
                 cls.aggressive = True
                 return
             else: # Otherwise, save last attack
                 State.players[cls.attacker].history.insertAtFront(attacks) # Log attack that needs to be blocked
                 audio.ticker.play(audio.attack_sound)
+                print("\nattack!\n")
 
         else: # For defense beats
             print("defending beat. Dodges:",dodges)
@@ -83,11 +87,13 @@ class Fight:
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         dodged = False
                         audio.ticker.play(audio.hit_sound)
+                        print("\nhit!\n")
                         cls.attacker = not cls.attacker
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
 
         audio.ticker.play(audio.dodge_sound)
+        print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return # Return False because no hit was recorded
