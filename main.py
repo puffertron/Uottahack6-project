@@ -24,8 +24,23 @@ def main():
                 if event.unicode == "a":
                     print(pg.time.get_ticks())
         
-        screen.fill("purple")
+
+            # elif event.type == pg.KEYDOWN:
+            #     if event.unicode == "a":
+            #         print(time_since_beat)
+            #         if (time_since_beat < config.perfect_time_tol) or ((time_since_beat-ms_per_beat) > -config.perfect_time_tol):
+            #             print("You did PERFECT!!!!!!")
+            #         elif (time_since_beat < config.great_time_tol) or ((time_since_beat-ms_per_beat) > -config.great_time_tol):
+            #             print("Pretty Great!")
+            #         else:
+            #             print("nah, you missed")
         
+        #time_since_beat = pg.time.get_ticks() % ms_per_beat
+        
+        #when new input, check to see if at great time
+        
+        screen.fill("purple")
+
         # TODO - get input
         pad1, pad2, = padinput.setupPads()
         pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1)
