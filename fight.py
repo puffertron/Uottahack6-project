@@ -56,13 +56,18 @@ class Fight:
                     dodges.append(move)
             
             dodged = True # Check if defender successfully dodged
-            if State.players[cls.attacker].history.getHead(): # Get attack from last beat
+            if State.players[cls.attacker].history.getHead(): # Do nothing if head is None (start of game)
                 for attack in State.players[cls.attacker].history.getHead().getData(): # Check if defender successfully dodged
-                    if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
+                    if not (cls.DODGES_FOR_ATTACKS[attack] in dodges): # If any attack undodged, failed to dodge
                         dodged = False
                         audio.ticker.play(audio.hit_sound)
                         return not dodged # If failed to dodge, return True to record a hit
+            else:
+                #debugging
+                print("START OF GAME: player.history.getHead() in fight returned None, this should only happen at start of game")
+
+            #TODO - if dodged: play block noise or something
         
         audio.ticker.play(audio.defensive_sound)
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
-        return False # Return False because no hit should be recorded
+        return False # Return False because no hit was recorded
