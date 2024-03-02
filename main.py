@@ -52,7 +52,7 @@ def main():
                     stances[player]["good"] += playerInput
                 else:
                     print("nah, you missed")
-                    audio.miss_sound.play()
+                    #audio.miss_sound.play()
 
         
 
@@ -78,7 +78,7 @@ def main():
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            audio.metronome_sound.play()
+            audio.ticker.play(audio.metronome_sound)
             updated_this_beat = False
         
 
