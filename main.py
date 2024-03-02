@@ -3,6 +3,7 @@ from setup import setup
 import config, padinput
 import math
 from fight import Fight
+import audio
 
 
 def main():
@@ -54,14 +55,14 @@ def main():
                     stances[player]["good"] += playerInput
                 else:
                     print("nah, you missed")
-                    #Make womp womp sound
+                    audio.miss_sound.play()
 
         
 
         
 
-
-        # Send input to fight function every beat        
+        # Do things at specific times
+        # bit after beat, Send input to fight function every beat        
         if (not updated_this_beat) and (time_since_beat > config.perfect_time_tol):
             # Only ever update after window where input is accepted
             updated_this_beat = True
@@ -70,8 +71,10 @@ def main():
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
         
+        # on beat
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
+            audio.metronome_sound.play()
             updated_this_beat = False
         
 
