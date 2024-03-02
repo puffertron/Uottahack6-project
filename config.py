@@ -18,6 +18,6 @@ DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat.wav"
 
 # Audio
 BPM = 60 #1000ms per beat
-GOOD_TIME_TOL = 90 #ms
+GOOD_TIME_TOL = 200 #ms
 PERFECT_TIME_TOL = 15 #ms
 TIME_OFFSET = 20 #ms, positive number shifts all timing hit windows later (audio plays earlier)

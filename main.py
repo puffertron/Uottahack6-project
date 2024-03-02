@@ -71,6 +71,7 @@ def main():
                 print("danceBattle returned FALSE, no one got hit, keep going!")
             else:
                 print("someone changed the return value of dance battle to a non boolean, programmers, fix me in main.py")
+            print()
             # Clear stances
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
