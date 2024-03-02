@@ -3,6 +3,7 @@ from setup import setup
 import config, padinput
 import math
 from fight import Fight
+import audio
 
 
 def main():
