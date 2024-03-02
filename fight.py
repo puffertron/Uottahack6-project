@@ -1,4 +1,10 @@
+<<<<<<< HEAD
+from State import State.players as players
+import audio
+import pygame as pg
+=======
 from State import players
+>>>>>>> c0ead917c69d5b1b0ad86c3c34497d4dc1363bc4
 
 class Fight:
     """Holds current gamemode and does the logic on the stances to find out what happens"""
@@ -37,8 +43,11 @@ class Fight:
             if parried: # If attack was parried, lose advantage
                 players[attacker].history.insertAtFront([])
                 attacker = not attacker
+                if not len(attacks) = 0:
+                    audio.parry.play()
             else: #otherwise, save last attack
                 players[attacker].history.insertAtFront(attacks)
+                audio.aggressive_sound.play()
 
         else: # For defense beats
             dodges = [] # Create a list of current dodges
@@ -51,7 +60,9 @@ class Fight:
             for attack in players[attacker].history.getHead().getData(): # Check if defender successfully dodged
                 if not (dodges in DODGES_FOR_ATTACKS[attack]):
                     dodged = False
+                    audio.hit.play()
                     return not dodged # If failed to dodge, return True to record a hit
-
+        
+        audio.defensive_sound.play()
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return False # Return False because no hit should be recorded
