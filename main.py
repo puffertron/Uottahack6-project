@@ -31,9 +31,6 @@ def main():
             elif event.type == pg.KEYDOWN:
                 if event.unicode == "a":
                     print(pg.time.get_ticks())
-            # elif event.type == pg.KEYDOWN:
-            #     if event.unicode == "a":
-            #         print(time_since_beat)
 
         # GET DDR INPUTS
         # Get newly pressed input (& what buttons were HELD TODO)
@@ -66,7 +63,14 @@ def main():
         if (not updated_this_beat) and (time_since_beat > config.PERFECT_TIME_TOL):
             # Only ever update after window where input is accepted
             updated_this_beat = True
-            Fight.danceBattle(stances)
+            returnValue = Fight.danceBattle(stances)
+            #TODO - deal with return value
+            if returnValue == True:
+                print("danceBattle returned TRUE! Game is over, you got hit, whomp whomp")
+            elif returnValue == False:
+                print("danceBattle returned FALSE, no one got hit, keep going!")
+            else:
+                print("someone changed the return value of dance battle to a non boolean, programmers, fix me in main.py")
             # Clear stances
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
@@ -78,12 +82,8 @@ def main():
             updated_this_beat = False
         
 
-        # NO LONGER USED, CAN BE REMOVED
-        # last_time_since_beat = time_since_beat
-        # time_since_beat = pg.time.get_ticks() % ms_per_beat
-        
 
-        #Update Visuals
+        #UPDATE VISUALS
         screen.fill("purple")
 
         padinput.drawPads(screen, (pad0_raw_input, pad1_raw_input), (pad0_strings_input, pad1_strings_input))
