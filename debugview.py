@@ -1,4 +1,5 @@
 import pygame
+import math
 
 # pygame setup
 pygame.init()
@@ -14,23 +15,51 @@ pad1 = joysticks[0]
 pad2 = joysticks[1]
 cornerbuttons = [2,1,0,3] #bottomleft, topright, topleft, bottomright
 
-def get_pad_input(pad: pygame.joystick.Joystick):
+def getPadInput(pad: pygame.joystick.Joystick):
     axis1 = pad.get_axis(0)
-    axis2 = pad.get_axis(1)
+    axis2 = pad.get_axis(1) 
 
     buttons=[]
     for i in cornerbuttons:
         buttons.append(pad.get_button(i))
 
-    inputs = {"forward":max(axis1, 0), "back":min(axis1, 0), "left":max(axis2, 0), "right":max(axis2, 0), 
-              "cross":buttons[0], "circle":buttons[1], "triangle":buttons[2], "square":buttons[3], "start":0, "select":0}
-    return inputs
+    input_names = [
+        "nw", "n", "ne",
+        "w", "m", "e",
+        "sw", "s", "se"
+        ]
 
-def draw_pad_input(input, color):
+    inputs = [
+        buttons[1],                 axis2 < -0.5 or axis2 == 0, buttons[0], 
+        axis1 > 0.5 or axis1 == 0, None,                   axis1 < -0.5 or axis1 == 0,
+        buttons[3],                 axis2 > 0.5 or axis2 == 0,  buttons[2], 0, 0
+        ]
+
+    
+    input_strings = []
+    for i, input in enumerate(inputs):
+        if input:
+            input_strings.append(input_names[i])
+    
+    return inputs, input_strings
+
+def drawPadInput(input):
     padsurf = pygame.surface.Surface((90,90))
+    padsurf.fill((200,200,0))
     padrect = padsurf.get_rect()
     
+    panels = []
+    for i in range(0,9):
+        if i != 4:
+            p = pygame.surface.Surface((30,30))
+            p.fill((50*(i%2),50*(i%2),50*(i%2)))
+            if input[i]:
+                p.fill((255*(i%2),255,255))
+            padsurf.blit(p, p.get_rect().move(math.floor(i/3)*30,(i%3)*30))
 
+
+    return padsurf
+        
 
 while running:
 
@@ -43,8 +72,12 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
 
-    print(get_pad_input(pad1))
-    print(get_pad_input(pad2))
+    i1, s1 =getPadInput(pad1)
+    i2, s2 = getPadInput(pad2)
+    screen.blit(pygame.transform.flip(drawPadInput(i1),1,1), pygame.Rect(50,50,90,90))
+    screen.blit(drawPadInput(i2), pygame.Rect(50+90+20,50,90,90))
+    print(s1)
+
 
     
 
