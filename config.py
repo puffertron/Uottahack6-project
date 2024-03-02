@@ -13,8 +13,7 @@ MISS_SOUND_FILE = "sounds/miss.wav"
 HIT_SOUND_FILE = "sounds/kick.wav"
 PARRY_SOUND_FILE = "sounds/kick.wav"
 AGGRESSIVE_SOUND_FILE = "sounds/metronome_on_beat.wav"
-DEFENSIVE_:w
-SOUND_FILE = "sounds/metronome_off_beat"
+DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat.wav"
 #FUMBLE_SOUND_FILE = ""
 
 # Audio
