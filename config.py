@@ -4,8 +4,8 @@
 MAX_STANCE_MEMORY = 16
 
 # Visual Settings
-windowWidth = 100 #pxl?
-windowHeight = 100 #pxl?
+windowWidth = 500 #pxl?
+windowHeight = 500 #pxl?
 
 
 
