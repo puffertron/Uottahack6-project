@@ -67,3 +67,7 @@ class LinkedList:
             return
         
         return node.next
+    
+    #Get the data of the current node
+    def getData(self, node):
+        return node.data
