@@ -8,6 +8,8 @@ windowWidth = 500 #pxl?
 windowHeight = 500 #pxl?
 
 # Audio files
+BEEP_SOUND_FILE = "sounds/beep.wav"
+BOOP_SOUND_FILE = "sounds/boop.wav"
 METRONOME_SOUND_FILE = "sounds/womp.wav"
 MISS_SOUND_FILE = "sounds/womp.wav"
 HIT_SOUND_FILE = "sounds/tick.wav"
