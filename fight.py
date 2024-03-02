@@ -31,9 +31,9 @@ class Fight:
     @classmethod
     def onInput(cls, playerInput: list[str], player: bool):
         is_attack = False
-            for move in playerInput:
-                if move in cls.DODGES_FOR_ATTACKS.keys():
-                    is_attack = True
+        for move in playerInput:
+            if move in cls.DODGES_FOR_ATTACKS.keys():
+                is_attack = True
 
         if player == cls.attacker and is_attack:
             audio.ticker.play(audio.attack_sound)

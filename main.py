@@ -85,8 +85,7 @@ def main():
 
         # on half-beat
         if time_since_beat > (ms_per_beat/2):
-            pass
-            # Fight.onHalfBeat()
+            Fight.onOffBeat()
 
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
