@@ -1,4 +1,4 @@
-import pg as pg
+import pygame as pg
 import math
 
 pg.joystick.init()
