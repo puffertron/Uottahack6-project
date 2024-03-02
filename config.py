@@ -8,10 +8,13 @@ windowWidth = 500 #pxl?
 windowHeight = 500 #pxl?
 
 # Audio files
+METRONOME_SOUND_FILE = "sounds/tick.wav"
+MISS_SOUND_FILE = "sounds/miss.wav"
 HIT_SOUND_FILE = "sounds/kick.wav"
 PARRY_SOUND_FILE = "sounds/kick.wav"
 AGGRESSIVE_SOUND_FILE = "sounds/metronome_on_beat.wav"
-DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat"
+DEFENSIVE_:w
+SOUND_FILE = "sounds/metronome_off_beat"
 #FUMBLE_SOUND_FILE = ""
 
 # Audio
