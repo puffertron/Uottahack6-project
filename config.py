@@ -20,6 +20,8 @@ ATTACK_SOUND_FILE = "sounds/kick.wav"
 DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
 P0CHORD_FILE = "sounds/kick.wav"
 P1CHORD_FILE = "sounds/kick.wav"
+BACKTRACK_FILE = "sounds/backing_loop.wav"
+
 #FUMBLE_SOUND_FILE = ""
 
 # Audio

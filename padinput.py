@@ -73,7 +73,7 @@ def getPadInput(pad: pg.joystick.Joystick, pad_number) -> tuple[list, list]:
     else:
         delta_inputs_0 = input_strings
 
-    print( "pad ", pad_number,just_pressed_input_strings, delta_inputs, input_strings, inputs)
+    #print( "pad ", pad_number,just_pressed_input_strings, delta_inputs, input_strings, inputs)
     
     return inputs, just_pressed_input_strings
 
