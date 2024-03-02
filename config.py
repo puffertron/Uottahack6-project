@@ -20,7 +20,6 @@ ATTACK_SOUND_FILE = "sounds/tick.wav"
 DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
 P0CHORD_FILE = "sounds/tick.wav"
 P1CHORD_FILE = "sounds/tick.wav"
-#FUMBLE_SOUND_FILE = ""
 
 # Audio
 BPM = 120 #1000ms per beat
