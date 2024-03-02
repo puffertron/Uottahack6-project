@@ -15,12 +15,6 @@ DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat"
 #FUMBLE_SOUND_FILE = ""
 
 # Audio
-
 bpm = 60 #1000ms per beat
-<<<<<<< HEAD
-great_time_tol = 90 #ms
-perfect_time_tol = 15 #ms
-=======
 good_time_tol = 90 #ms
 perfect_time_tol = 15 #ms
->>>>>>> c0ead917c69d5b1b0ad86c3c34497d4dc1363bc4
