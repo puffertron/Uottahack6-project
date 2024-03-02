@@ -7,10 +7,14 @@ MAX_STANCE_MEMORY = 16
 windowWidth = 500 #pxl?
 windowHeight = 500 #pxl?
 
-
+# Audio files
+HIT_SOUND_FILE = "sounds/kick.wav"
+PARRY_SOUND_FILE = "sounds/kick.wav"
+AGGRESSIVE_SOUND_FILE = "sounds/metronome_on_beat.wav"
+DEFENSIVE_SOUND_FILE = "sounds/metronome_off_beat"
+#FUMBLE_SOUND_FILE = ""
 
 # Audio
-
 bpm = 60 #1000ms per beat
 good_time_tol = 90 #ms
 perfect_time_tol = 15 #ms
