@@ -22,6 +22,9 @@ def main():
     half_beat_played = True #goes to false when time_since_beat resets, goes to true when half-beat function happens happens
     stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
     
+    clock.tick()
+    audio.background.play(audio.backtrack, loops=-1)
+    print(time_since_beat)
 
     while running:
         
