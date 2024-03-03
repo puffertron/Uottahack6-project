@@ -51,6 +51,23 @@ FINISH_THEM_SOUND_FILE = "sounds/voicelines/TODO" #TODO
 
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 
+#Chromatic Scale
+CHROMATIC_SCALE = [
+"sounds/chromatic_scale/A-Guitar.wav",
+"sounds/chromatic_scale/Bb-Guitar.wav",
+"sounds/chromatic_scale/B-Guitar.wav",
+"sounds/chromatic_scale/C-Guitar.wav",
+"sounds/chromatic_scale/C#-Guitar.wav",
+"sounds/chromatic_scale/D-Guitar.wav",
+"sounds/chromatic_scale/Eb-Guitar.wav",
+"sounds/chromatic_scale/E-Guitar.wav",
+"sounds/chromatic_scale/F-Guitar.wav",
+"sounds/chromatic_scale/F#-Guitar.wav",
+"sounds/chromatic_scale/Ab-Guitar.wav",
+"sounds/chromatic_scale/G-Guitar.wav"
+]
+
+GENERIC_FINISHER_EXPLOSION = "explosionsfx.mp3"
 
 # Audio
 BPM = 120 #1000ms per beat
