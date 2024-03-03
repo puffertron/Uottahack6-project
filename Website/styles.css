@@ -1,0 +1,24 @@
+.title{
+    margin: auto;
+    width: 35%;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+.image{
+    float: left;
+    width: 200px;
+    transform: scale(.1);
+    max-height: 200px;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.left{
+    text-align: center;
+    width: 15%;
+    font-size: larger;
+    float: left;
+    padding-left: 100px;
+}
