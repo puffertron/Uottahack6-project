@@ -24,6 +24,8 @@ def setup():
     State.player0.dodge_sound = pg.mixer.Sound(config.P0DODGE_SOUND_FILE)
     State.player1.dodge_sound = pg.mixer.Sound(config.P1DODGE_SOUND_FILE)
     State.player0.hit_sound = pg.mixer.Sound(config.P0HIT_SOUND_FILE)
+    State.player0.offbeat_sound = pg.mixer.Sound(config.P0OFFBEAT_SOUND_FILE)
+    State.player1.offbeat_sound = pg.mixer.Sound(config.P1OFFBEAT_SOUND_FILE)
     State.player1.hit_sound = pg.mixer.Sound(config.P1HIT_SOUND_FILE)
     State.player0.parry_sound = pg.mixer.Sound(config.P0PARRY_SOUND_FILE)
     State.player1.parry_sound = pg.mixer.Sound(config.P1PARRY_SOUND_FILE)
