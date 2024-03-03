@@ -8,7 +8,7 @@ windowWidth = 500 #pxl?
 windowHeight = 500 #pxl?
 
 # Audio files
-BEEP_SOUND_FILE = "sounds/beep.wav"
+BEEP_SOUND_FILE = "sounds/beep.wav" # metronome sounds
 BOOP_SOUND_FILE = "sounds/boop.wav"
 METRONOME_SOUND_FILE = "sounds/womp.wav"
 METRONOME_SOUND_FILE = "sounds/kick.wav"
@@ -17,8 +17,8 @@ HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 PARRY_SOUND_FILE = "sounds/clink.wav"
 FUMBLE_SOUND_FILE = "sounds/womp.wav"
 ATTACK_SOUND_FILE = "sounds/kick.wav"
-DODGE_SOUND_FILE = "sounds/metronome_off_beat.wav"
-P0CHORD_FILE = "sounds/kick.wav"
+DODGE_SOUND_FILE = "sounds/woosh.wav"
+P0CHORD_FILE = "sounds/hithigh.wav"
 P1CHORD_FILE = "sounds/kick.wav"
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 
