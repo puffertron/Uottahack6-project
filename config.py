@@ -45,6 +45,8 @@ P1WIN_SOUND_FILE = "sounds/voicelines/player2win.wav"
 SCORE_RESET_SOUND_FILE = "sounds/voicelines/scorereset.wav"
 FIGHT_SOUND_FILE = "sounds/voicelines/fight.wav"
 
+ROUND_SOUND_FILES = ["sounds/voicelines/round1.wav","sounds/voicelines/round2.wav","sounds/voicelines/finalround.wav"]
+
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 
 
