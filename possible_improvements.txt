@@ -11,4 +11,3 @@
 Add MODES!!!!!
 Have ability for:
 - Combos (specific sequences of stances)
-- 
