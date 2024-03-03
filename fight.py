@@ -19,6 +19,7 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     queued_sound = None
+    score = 0
 
     @classmethod
     def switchAttacker(cls):
@@ -29,7 +30,7 @@ class Fight:
     @classmethod
     def startWaiting(cls):
         """Called when fumble or hit"""
-        cls.waiting = False
+        cls.waiting = True
         State.pause_for_beats = 4 # Does 4 beats of no metronome or inputs
 
 
@@ -63,17 +64,19 @@ class Fight:
             audio.player_voices[player].play(State.players[1].player_note[0])
  
     @classmethod
-    def roundEnd():
+    def roundEnd(cls):
         if cls.score > 1:
-            cls.finisher(0)
-            audio.narrator.play(State.player0.win_sound)
-        elif cls.score < -1:
-            cls.finisher(1)
+            #cls.finisher(0)
             audio.narrator.play(State.player1.win_sound)
+        elif cls.score < -1:
+            #cls.finisher(1)
+            audio.narrator.play(State.player0.win_sound)
         elif cls.score == 1:
-            audio.narrator.play(State.player0.advantage_sound)
-        elif cls.score == -1:
             audio.narrator.play(State.player1.advantage_sound)
+        elif cls.score == -1:
+            audio.narrator.play(State.player0.advantage_sound)
+        else:
+            audio.narrator.play(audio.score_reset_sound)
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
@@ -140,13 +143,9 @@ class Fight:
                         #print("\nhit!\n")
                         cls.switchAttacker()
                         cls.aggressive = True
-<<<<<<< HEAD
-                        cls.waiting = True
                         cls.score += (-1)**cls.attacker
                         cls.roundEnd()
-=======
                         cls.startWaiting()
->>>>>>> d1328316876bbb6810beb05b2066cc922743b476
                         return # If failed to dodge
 
             cls.queued_sound = State.players[not Fight.attacker].dodge_sound
