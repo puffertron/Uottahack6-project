@@ -39,12 +39,12 @@ class Fight:
                 is_attack = True
 
         if player == cls.attacker and is_attack:
-            audio.player_voices[player].play(audio.attack_sound)
+            audio.player_voices[player].play(State.players[player].player_chord[0])
             print("\nattack!\n")
         elif player == 0:
-            audio.player_voices[player].play(audio.player0_chord)
+            audio.player_voices[player].play(State.players[0].player_note[0])
         else:
-            audio.player_voices[player].play(audio.player1_chord)
+            audio.player_voices[player].play(State.players[1].player_note[0])
  
 
 
@@ -86,12 +86,12 @@ class Fight:
             if parried: # If attack was parried, lose advantage (also happens if no there was no attack)
                 State.players[cls.attacker].history.insertAtFront([])
                 if len(attacks) == 0:
-                    cls.queued_sound = audio.fumble_sound
-                    print("\nfumble!\n")
+                    cls.queued_sound = State.players[Fight.attacker].fumble_sound
+                    print("\nplayer", Fight.aggressive, " fumbled!\n")
                     cls.waiting = True
                 else:
-                    cls.queued_sound = audio.parry_sound
-                    print("\nparry!\n")
+                    cls.queued_sound = State.players[not Fight.attacker].parry_sound
+                    print("\n", not Fight.aggressive, " parry!\n")
                 cls.attacker = not cls.attacker
                 cls.aggressive = True
                 return
@@ -108,14 +108,14 @@ class Fight:
                     if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         dodged = False
-                        queued_sound = audio.hit_sound
+                        queued_sound = State.players[not Fight.attacker].hit_sound
                         print("\nhit!\n")
                         cls.attacker = not cls.attacker
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
 
-            queued_sound = audio.dodge_sound
+            queued_sound = State.players[not Fight.attacker].dodge_sound
             print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return

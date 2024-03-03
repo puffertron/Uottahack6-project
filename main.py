@@ -22,6 +22,9 @@ def main():
     half_beat_played = True #goes to false when time_since_beat resets, goes to true when half-beat function happens happens
     stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
     
+    clock.tick()
+    audio.background.play(audio.backtrack, loops=-1)
+    print(time_since_beat)
 
     while running:
         
@@ -84,13 +87,14 @@ def main():
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
         # on half-beat
-        if time_since_beat > (ms_per_beat/2):
+        if (not half_beat_played) and (time_since_beat > (ms_per_beat/2)):
             Fight.onOffBeat()
+            half_beat_played = True
 
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            #audio.ticker.play(audio.metronome_sound)
+            #audio.ticker.play(audio.metronome_sound) # Not used anymore, in Fight.onBeat()
             Fight.onBeat()
             updated_this_beat = False
             half_beat_played = False
