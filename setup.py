@@ -3,13 +3,13 @@ from state import State
 from player import Player
 import pygame as pg
 import config
+import audio
 
 def setup():
     print("setup players")
     State.player0 = Player()
     State.player1 = Player()
     State.players = [State.player0,State.player1]
-
 
     # Add sounds to players
     State.player0.player_note = [pg.mixer.Sound(config.ATTACK_SOUND_FILE)]
@@ -24,3 +24,11 @@ def setup():
     State.player1.parry_sound = pg.mixer.Sound(config.PARRY_SOUND_FILE)
     State.player0.fumble_sound = pg.mixer.Sound(config.FUMBLE_SOUND_FILE)
     State.player1.fumble_sound = pg.mixer.Sound(config.FUMBLE_SOUND_FILE)
+
+    # Set channel volumes
+    audio.player0_voice.set_volume(0.25)
+    audio.player1_voice.set_volume(0.25)
+    audio.SFX.set_volume(1)
+    audio.metronome.set_volume(0.4)
+    audio.buzzer.set_volume(0.25)
+    audio.background.set_volume(0.4)
