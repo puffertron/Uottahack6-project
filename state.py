@@ -7,7 +7,7 @@ class State:
     player0: Player = None
     player1: Player = None
     players: list[Player] = []
-    winner = 2
+    winner = 1
     player0_score = 0
     player1_score = 0
 
