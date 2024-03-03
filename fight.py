@@ -28,7 +28,7 @@ class Fight:
     @classmethod
     def onOffBeat(cls):
         if cls.queued_sound:
-            print("Queud sound was played!!! it was:", cls.queued_sound)
+            print("----------------------------------------------------------------------------Queud sound was played!!! it was:", cls.queued_sound, "---------------------------------------------------------------------")
             audio.SFX.play(cls.queued_sound)
             cls.queued_sound = None
 
