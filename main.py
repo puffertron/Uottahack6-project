@@ -69,15 +69,17 @@ def main():
 
             #What happens when player 0 has won does and input
             if State.winner == 0 and len(inputs[0]):
-                finisher_counter += len(inputs[0])
+                finisher_counter += 1
                 double_input.append(inputs[0])
                 #play incrementing audio
+                audio.chromatic_scale.play(config.CHROMATIC_SCALE[finisher_counter])
             
             #What happens when player 1 has won does and input
             if State.winner == 1 and len(inputs[1]):
-                finisher_counter += len(inputs[1])
+                finisher_counter += 1
                 double_input.append(inputs[1])
                 #play incrementing audio
+                audio.chromatic_scale.play(config.CHROMATIC_SCALE[finisher_counter])
             
             #Determine what finisher sound to play
             if finisher_sequence in config.FINISHER_SEQUENCES.values():
@@ -86,7 +88,7 @@ def main():
                 print()
             elif finisher_counter == config.MAX_FINISHER:
                 #Play explosion/generic finisher sfx
-                print()
+                audio.generic_finisher.play()
                 
         # When new input, check to see if at great time
         # TODO - add ability for HELD stances
