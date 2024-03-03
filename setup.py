@@ -44,3 +44,5 @@ def setup():
     audio.metronome.set_volume(0.2)
     audio.buzzer.set_volume(0.1)
     audio.background.set_volume(0.3)
+    audio.background_p0.set_volume(0)
+    audio.background_p1.set_volume(0)

@@ -25,12 +25,21 @@ class Fight:
     def switchAttacker(cls):
         """Called when fumble or parry"""
         cls.attacker = not cls.attacker
-        if cls.attacker == 1:
-            audio.background_p0.set_volume(0)
-            audio.background_p1.set_volume(1)
-        else:
-            audio.background_p0.set_volume(1)
-            audio.background_p1.set_volume(0)
+        # if cls.attacker == 1:
+        #     audio.background_p0.set_volume(0)
+        #     audio.background_p1.set_volume(1)
+        # else:
+        #     audio.background_p0.set_volume(1)
+        #     audio.background_p1.set_volume(0)
+        audio.background_p0.set_volume(0)
+        audio.background_p1.set_volume(0)
+        if cls.score != 0:
+            if cls.attacker == 0:
+                audio.background_p0.set_volume(0.5)
+                audio.background_p1.set_volume(0)
+            elif cls.attacker == 1:
+                audio.background_p0.set_volume(0)
+                audio.background_p1.set_volume(0.5)
 
     @classmethod
     def startWaiting(cls):
@@ -112,6 +121,8 @@ class Fight:
         attacks = [] # Create a list of current attacks
         parries = [] # Create a list of current parries
         dodges = [] # Create a list of current dodges
+
+        
 
         for move in stances[cls.attacker]: # Add valid attacks chosen
             if move in cls.DODGES_FOR_ATTACKS.keys(): # It's a valid attack
