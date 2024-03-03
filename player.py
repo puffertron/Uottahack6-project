@@ -20,7 +20,7 @@ class Player():
         self.win_sound = None
 
     def getNote(self):
-        if self.note_ind == len(self.player_note): #Cycle through notes
+        if self.note_ind == len(self.player_note)-1: #Cycle through notes
             self.note_ind = 0
         else:
             self.note_ind += 1
