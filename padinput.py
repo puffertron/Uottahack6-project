@@ -49,7 +49,7 @@ def getPadInput(pad: pg.joystick.Joystick, pad_number) -> tuple[list, list]:
     inputs = [ 
         buttons[1],                 axis2 < -0.5 or axis2 == 0, buttons[0], 
         axis1 > 0.5 or axis1 == 0, None,                   axis1 < -0.5 or axis1 == 0,
-        buttons[3],                 axis2 > 0.5 or axis2 == 0,  buttons[2], 0, 0
+        buttons[3],                 axis2 > 0.5 or axis2 == 0,  buttons[2], pad.get_button(10), pad.get_button(11)
         ]
     
     input_strings = []
