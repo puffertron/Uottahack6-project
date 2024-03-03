@@ -1,4 +1,4 @@
-
+Possible improvements that could be made to project (we had more but we forgot)
 
 
 
@@ -9,5 +9,5 @@
 
 
 Add MODES!!!!!
-Have ability for:
+Have structure implemented in code for:
 - Combos (specific sequences of stances)

@@ -6,13 +6,22 @@ class Player():
     def __init__(self):
         self.history = LinkedList()
 
+        self.note_ind = 4 # Which note was just played, cycles through notes
+
 
         # Sounds specific to player, updated in 'setup.py'
-        self.player_note:list[pg.mixer.Sound] = [] #NOTE - currently only use first index of these lists of sounds, can add later ability to randomly choose one
-        self.player_chord:list[pg.mixer.Sound] = []
+        self.player_note:list[pg.mixer.Sound] = [] # Has ability to cycle through notes
+        self.player_chord:list[pg.mixer.Sound] = [] # NOTE: Currently only use first index
         self.dodge_sound:pg.mixer.Sound = None # Played when successful dodge as defender
         self.hit_sound:pg.mixer.Sound = None # Played when hit by attacker
         self.parry_sound:pg.mixer.Sound = None # Played when do successful parry against attacker
         self.fumble_sound:pg.mixer.Sound = None # Played when failed to attack
         self.advantage_sound = None
         self.win_sound = None
+
+    def getNote(self):
+        if self.note_ind == len(self.player_note): #Cycle through notes
+            self.note_ind = 0
+        else:
+            self.note_ind += 1
+        return self.player_note[self.note_ind]
