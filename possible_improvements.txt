@@ -5,3 +5,10 @@
 
 - Make option to speed up
 - Add visual screen in middle of play area that shows turn and maybe something else?
+
+
+
+Add MODES!!!!!
+Have ability for:
+- Combos (specific sequences of stances)
+- 
