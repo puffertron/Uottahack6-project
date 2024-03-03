@@ -24,7 +24,6 @@ class Fight:
     def switchAttacker(cls):
         """Called when fumble or parry"""
         cls.attacker = not cls.attacker
-        cls.successful_hits = 0
         # TODO - add backing track stuff
 
 
@@ -39,10 +38,6 @@ class Fight:
     @classmethod
     def onOffBeat(cls):
         if cls.queued_sound:
-<<<<<<< HEAD
-            #print("----------------------------------------------------------------------------Queud sound was played!!! it was:", cls.queued_sound, "---------------------------------------------------------------------")
-=======
->>>>>>> a43dfe52f02fc97d61638c1a1d54b7fbe59985e7
             audio.SFX.play(cls.queued_sound)
             cls.queued_sound = None
 
@@ -125,13 +120,8 @@ class Fight:
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
-<<<<<<< HEAD
                         #print("\nhit!\n")
-                        cls.attacker = not cls.attacker # Attacker should stay the same
-=======
-                        print("\nhit!\n")
-                        cls.successful_hits += 1
->>>>>>> a43dfe52f02fc97d61638c1a1d54b7fbe59985e7
+                        cls.switchAttacker()
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
