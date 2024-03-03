@@ -6,7 +6,7 @@ class Player():
     def __init__(self):
         self.history = LinkedList()
 
-        self.note_ind = 4 # Which note was just played, cycles through notes
+        self.note_ind = 0 # Which note was just played, cycles through notes
 
 
         # Sounds specific to player, updated in 'setup.py'
@@ -20,7 +20,7 @@ class Player():
         self.win_sound = None
 
     def getNote(self):
-        if self.note_ind == len(self.player_note): #Cycle through notes
+        if self.note_ind == len(self.player_note)-1: #Cycle through notes
             self.note_ind = 0
         else:
             self.note_ind += 1

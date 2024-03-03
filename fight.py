@@ -69,10 +69,10 @@ class Fight:
     @classmethod
     def roundStart(cls):
         round_num = State.player0_score + State.player1_score
-        audio.narrator.play(audio.round_sounds[round_num])
+        audio.narrator.queue(audio.round_sounds[round_num])
+        cls.startWaiting()
         audio.narrator.queue(audio.fight_sound)
         cls.score = 0
-        cls.startWaiting()
 
     @classmethod
     def roundEnd(cls):
