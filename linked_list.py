@@ -11,6 +11,14 @@ class Node:
     #Get the data from node
     def getData(self):
         return self.data
+    
+    #Return the next pointer
+    def getNext(self):
+        #Error handling
+        if next == None:
+            return
+        
+        return next
 
 #Linked list class
 class LinkedList:
@@ -64,12 +72,7 @@ class LinkedList:
         
         return self.head
 
-    #Return the next pointer
-    def getNext(self, node):
-        #Error handling
-        if node.next == None:
-            return
-        
-        return node.next
+
+    
     
     
