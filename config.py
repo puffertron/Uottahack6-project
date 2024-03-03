@@ -55,6 +55,8 @@ P1BACKTRACK_FILE = "sounds/drum_backing.wav"
 
 #Chromatic Scale
 CHROMATIC_SCALE = [
+"sounds/chromatic_scale/G-Guitar.wav",
+"sounds/chromatic_scale/Ab-Guitar.wav",
 "sounds/chromatic_scale/A-Guitar.wav",
 "sounds/chromatic_scale/Bb-Guitar.wav",
 "sounds/chromatic_scale/B-Guitar.wav",
@@ -64,9 +66,7 @@ CHROMATIC_SCALE = [
 "sounds/chromatic_scale/Eb-Guitar.wav",
 "sounds/chromatic_scale/E-Guitar.wav",
 "sounds/chromatic_scale/F-Guitar.wav",
-"sounds/chromatic_scale/F#-Guitar.wav",
-"sounds/chromatic_scale/Ab-Guitar.wav",
-"sounds/chromatic_scale/G-Guitar.wav"
+"sounds/chromatic_scale/F#-Guitar.wav"
 ]
 
 GENERIC_FINISHER_EXPLOSION = "sounds/explosion.wav"
