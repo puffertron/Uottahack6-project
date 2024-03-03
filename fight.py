@@ -25,7 +25,12 @@ class Fight:
     def switchAttacker(cls):
         """Called when fumble or parry"""
         cls.attacker = not cls.attacker
-        # TODO - add backing track stuff
+        if attacker == 1:
+            audio.background_p0.set_volume(0)
+            audio.background_p1.set_volume(1)
+        else:
+            audio.background_p0.set_volume(1)
+            audio.background_p1.set_volume(0)
 
     @classmethod
     def startWaiting(cls):

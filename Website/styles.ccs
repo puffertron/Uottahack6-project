@@ -1,0 +1,7 @@
+.middle{
+    margin: auto;
+    wdith: 50%;
+    padding: 10px;
+    text-align: center;
+    float: right;
+}
