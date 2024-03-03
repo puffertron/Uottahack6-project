@@ -17,13 +17,18 @@ METRONOME_SOUND_FILE = "sounds/womp.wav"
 METRONOME_SOUND_FILE = "sounds/kick.wav"
 MISS_SOUND_FILE = "sounds/buzzer.wav"
 
-# Specific to players
-P0NOTE_FILE = "sounds/kick.wav"
-P1NOTE_FILE = "sounds/kick.wav"
+# Secific to players p0 is synth, p1 is drum
+P0NOTE_FILE0 = "sounds/synthnote0.wav"
+P0NOTE_FILE1 = "sounds/synthnote1.wav"
+P0NOTE_FILE2 = "sounds/synthnote2.wav"
+P0NOTE_FILE3 = "sounds/synthnote3.wav"
+P1NOTE_FILE = "sounds/tambohit.wav"
 P0CHORD_FILE = "sounds/hithigh.wav"
-P1CHORD_FILE = "sounds/hithigh.wav"
+P1CHORD_FILE = "sounds/clap.wav"
 P0HIT_SOUND_FILE = "sounds/big_cymbal.wav"
-P1HIT_SOUND_FILE = "sounds/big_cymbal.wav"
+P1HIT_SOUND_FILE = "sounds/finalcymbal.wav"
+P0OFFBEAT_SOUND_FILE = "sounds/lilbeep.wav"
+P1OFFBEAT_SOUND_FILE = "sounds/ting.wav"
 P0PARRY_SOUND_FILE = "sounds/clink.wav"
 P1PARRY_SOUND_FILE = "sounds/clink.wav"
 P0FUMBLE_SOUND_FILE = "sounds/womp.wav"
@@ -39,6 +44,10 @@ P0WIN_SOUND_FILE = "sounds/voicelines/player1win.wav"
 P1WIN_SOUND_FILE = "sounds/voicelines/player2win.wav"
 SCORE_RESET_SOUND_FILE = "sounds/voicelines/scorereset.wav"
 FIGHT_SOUND_FILE = "sounds/voicelines/fight.wav"
+
+ROUND_SOUND_FILES = ["sounds/voicelines/round1.wav","sounds/voicelines/round2.wav","sounds/voicelines/finalround.wav"]
+
+FINISH_THEM_SOUND_FILE = "sounds/voicelines/TODO" #TODO
 
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 

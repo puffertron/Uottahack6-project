@@ -65,12 +65,13 @@ class Fight:
  
     @classmethod
     def finisher(cls, winner):
-        State.winner = winner    @classmethod
+        #audio.narrator.queue(audio.finish_them_sound)
+        State.winner = winner
     
     @classmethod
     def roundStart(cls):
         round_num = State.player0_score + State.player1_score
-        audio.narrator.play(audio.round_sounds[round_num])
+        audio.narrator.queue(audio.round_sounds[round_num])
         audio.narrator.queue(audio.fight_sound)
         cls.score = 0
         cls.startWaiting()
@@ -78,17 +79,26 @@ class Fight:
     @classmethod
     def roundEnd(cls):
         if cls.score > 1:
-            #cls.finisher(0)
-            audio.narrator.play(State.player1.win_sound)
-        elif cls.score < -1:
-            #cls.finisher(1)
+            State.player0_score += 1
             audio.narrator.play(State.player0.win_sound)
+            if State.player0_score == 2:
+                cls.finisher(0)
+            else:
+                cls.roundStart()
+        elif cls.score < -1:
+            State.player1_score += 1
+            audio.narrator.play(State.player1.win_sound)
+            if State.player1_score ==2:
+                cls.finisher(1)
+            else:
+                cls.roundStart()
         elif cls.score == 1:
-            audio.narrator.play(State.player1.advantage_sound)
-        elif cls.score == -1:
             audio.narrator.play(State.player0.advantage_sound)
+        elif cls.score == -1:
+            audio.narrator.play(State.player1.advantage_sound)
         else:
             audio.narrator.play(audio.score_reset_sound)
+        
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
@@ -139,6 +149,8 @@ class Fight:
                 cls.aggressive = True
                 return
             else: # Otherwise, save last attack
+                if not cls.queued_sound: #play an offbeat sound
+                    cls.queued_sound = State.players[Fight.attacker].offbeat_sound
                 State.players[cls.attacker].history.insertAtFront(attacks) # Log attack that needs to be blocked
 
         else: # For defense beats
@@ -153,9 +165,9 @@ class Fight:
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
                         #print("\nhit!\n")
+                        cls.score += (-1)**cls.attacker
                         cls.switchAttacker()
                         cls.aggressive = True
-                        cls.score += (-1)**cls.attacker
                         cls.roundEnd()
                         cls.startWaiting()
                         return # If failed to dodge

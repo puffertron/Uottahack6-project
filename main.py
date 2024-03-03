@@ -27,7 +27,7 @@ def main():
     
     clock.tick()
     audio.background.play(audio.backtrack, loops=-1)
-    print(time_since_beat)
+    Fight.roundStart()
 
     while running:
         
