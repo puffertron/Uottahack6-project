@@ -149,6 +149,8 @@ class Fight:
                 cls.aggressive = True
                 return
             else: # Otherwise, save last attack
+                if not cls.queued_sound: #play an offbeat sound
+                    cls.queued_sound = State.players[Fight.attacker].offbeat_sound
                 State.players[cls.attacker].history.insertAtFront(attacks) # Log attack that needs to be blocked
 
         else: # For defense beats
