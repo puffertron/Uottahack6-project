@@ -12,12 +12,13 @@ BEEP_SOUND_FILE = "sounds/beep.wav" # metronome sounds
 BOOP_SOUND_FILE = "sounds/boop.wav"
 METRONOME_SOUND_FILE = "sounds/womp.wav"
 METRONOME_SOUND_FILE = "sounds/kick.wav"
+MISS_SOUND_FILE = "sounds/buzzer.wav"
+
+# Secific to players
 P0NOTE_FILE = "sounds/kick.wav"
 P1NOTE_FILE = "sounds/kick.wav"
 P0CHORD_FILE = "sounds/hithigh.wav"
 P1CHORD_FILE = "sounds/kick.wav"
-P0MISS_SOUND_FILE = "sounds/buzzer.wav"
-P1MISS_SOUND_FILE = "sounds/buzzer.wav"
 P0HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 P1HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 P0PARRY_SOUND_FILE = "sounds/clink.wav"
