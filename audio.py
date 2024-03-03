@@ -6,6 +6,7 @@ pg.mixer.init()
 # metronome_sound = pg.mixer.Sound(config.METRONOME_SOUND_FILE)
 beep_sound = pg.mixer.Sound(config.BEEP_SOUND_FILE)
 boop_sound = pg.mixer.Sound(config.BOOP_SOUND_FILE)
+miss_sound = pg.mixer.Sound(config.MISS_SOUND_FILE)
 
 
 player0_voice = pg.mixer.Channel(0)

@@ -90,7 +90,7 @@ def main():
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            #audio.ticker.play(audio.metronome_sound)
+            #audio.ticker.play(audio.metronome_sound) # Not used anymore, in Fight.onBeat()
             Fight.onBeat()
             updated_this_beat = False
             half_beat_played = False

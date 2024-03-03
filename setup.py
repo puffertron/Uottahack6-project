@@ -14,10 +14,8 @@ def setup():
     # Add sounds to players
     State.player0.player_note = [pg.mixer.Sound(config.ATTACK_SOUND_FILE)]
     State.player1.player_note = [pg.mixer.Sound(config.ATTACK_SOUND_FILE)]
-    State.player0.player_chord = pg.mixer.Sound(config.P0CHORD_FILE)
-    State.player1.player_chord = pg.mixer.Sound(config.P1CHORD_FILE)
-    State.player0.miss_sound = pg.mixer.Sound(config.MISS_SOUND_FILE)
-    State.player1.miss_sound = pg.mixer.Sound(config.MISS_SOUND_FILE)
+    State.player0.player_chord = [pg.mixer.Sound(config.P0CHORD_FILE)]
+    State.player1.player_chord = [pg.mixer.Sound(config.P1CHORD_FILE)]
     State.player0.dodge_sound = pg.mixer.Sound(config.DODGE_SOUND_FILE)
     State.player1.dodge_sound = pg.mixer.Sound(config.DODGE_SOUND_FILE)
     State.player0.hit_sound = pg.mixer.Sound(config.HIT_SOUND_FILE)

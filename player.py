@@ -7,11 +7,10 @@ class Player():
         self.history = LinkedList()
 
 
-        # Sounds specific to player
-        self.player_note:list[pg.mixer.Sound] = []
-        self.player_chord:pg.mixer.Sound = None
-        self.miss_sound:pg.mixer.Sound = None
-        self.dodge_sound:pg.mixer.Sound = None
-        self.hit_sound:pg.mixer.Sound = None
-        self.parry_sound:pg.mixer.Sound = None
-        self.fumble_sound:pg.mixer.Sound = None
+        # Sounds specific to player, updated in 'setup.py'
+        self.player_note:list[pg.mixer.Sound] = [] #NOTE - currently only use first index of these lists of sounds, can add later ability to randomly choose one
+        self.player_chord:list[pg.mixer.Sound] = []
+        self.dodge_sound:pg.mixer.Sound = None # Played when successful dodge as defender
+        self.hit_sound:pg.mixer.Sound = None # Played when hit by attacker
+        self.parry_sound:pg.mixer.Sound = None # Played when do successful parry against attacker
+        self.fumble_sound:pg.mixer.Sound = None # Played when failed to attack
