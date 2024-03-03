@@ -121,7 +121,6 @@ class Fight:
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
                         print("\nhit!\n")
-                        cls.switchAttacker()
                         cls.successful_hits += 1
                         cls.aggressive = True
                         cls.waiting = True
