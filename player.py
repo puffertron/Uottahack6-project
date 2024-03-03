@@ -14,3 +14,5 @@ class Player():
         self.hit_sound:pg.mixer.Sound = None # Played when hit by attacker
         self.parry_sound:pg.mixer.Sound = None # Played when do successful parry against attacker
         self.fumble_sound:pg.mixer.Sound = None # Played when failed to attack
+        self.advantage_sound = None
+        self.win_sound = None

@@ -56,7 +56,18 @@ class Fight:
         else:
             audio.player_voices[player].play(State.players[1].player_note[0])
  
-
+    @classmethod
+    def roundEnd():
+        if cls.score > 1:
+            cls.finisher(0)
+            audio.narrator.play(State.player0.win_sound)
+        elif cls.score < -1:
+            cls.finisher(1)
+            audio.narrator.play(State.player1.win_sound)
+        elif cls.score == 1:
+            audio.narrator.play(State.player0.advantage_sound)
+        elif cls.score == -1:
+            audio.narrator.play(State.player1.advantage_sound)
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
@@ -124,6 +135,8 @@ class Fight:
                         cls.switchAttacker()
                         cls.aggressive = True
                         cls.waiting = True
+                        cls.score += (-1)**cls.attacker
+                        cls.roundEnd()
                         return # If failed to dodge
 
             cls.queued_sound = State.players[not Fight.attacker].dodge_sound
