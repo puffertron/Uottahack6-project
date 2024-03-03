@@ -26,6 +26,12 @@ class Fight:
         cls.attacker = not cls.attacker
         # TODO - add backing track stuff
 
+    @classmethod
+    def startWaiting(cls):
+        """Called when fumble or hit"""
+        cls.waiting = False
+        State.pause_for_beats = 4 # Does 4 beats of no metronome or inputs
+
 
 
     @classmethod
@@ -107,10 +113,10 @@ class Fight:
 
             if parried: # If attack was parried, lose advantage (also happens if no there was no attack)
                 State.players[cls.attacker].history.insertAtFront([])
-                if len(attacks) == 0:
+                if len(attacks) == 0: # Attacker fumbled
                     cls.queued_sound = State.players[Fight.attacker].fumble_sound
                     print("\nplayer", Fight.aggressive, " fumbled!\n")
-                    cls.waiting = True
+                    cls.startWaiting()
                 else:
                     cls.queued_sound = State.players[not Fight.attacker].parry_sound
                     print("\n", not Fight.aggressive, " parry!\n")
@@ -134,9 +140,13 @@ class Fight:
                         #print("\nhit!\n")
                         cls.switchAttacker()
                         cls.aggressive = True
+<<<<<<< HEAD
                         cls.waiting = True
                         cls.score += (-1)**cls.attacker
                         cls.roundEnd()
+=======
+                        cls.startWaiting()
+>>>>>>> d1328316876bbb6810beb05b2066cc922743b476
                         return # If failed to dodge
 
             cls.queued_sound = State.players[not Fight.attacker].dodge_sound
