@@ -9,6 +9,7 @@ class Fight:
 
     # Gamemode 1: Dance battle
     attacker = 0 #0 or 1 to log which player is currently attacking
+    successful_hits = 0 # Counts up each time attacker lands hit, after 3 hits (when = 3), game is over
     aggressive = True
     waiting = True
     DODGES_FOR_ATTACKS= {"nw": "se",
@@ -18,6 +19,16 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     queued_sound = None
+
+    @classmethod
+    def switchAttacker(cls):
+        """Called when fumble or parry"""
+        cls.attacker = not cls.attacker
+        cls.successful_hits = 0
+        # TODO - add backing track stuff
+
+
+
     @classmethod
     def onBeat(cls):
         if cls.aggressive:
@@ -28,7 +39,6 @@ class Fight:
     @classmethod
     def onOffBeat(cls):
         if cls.queued_sound:
-            print("----------------------------------------------------------------------------Queud sound was played!!! it was:", cls.queued_sound, "---------------------------------------------------------------------")
             audio.SFX.play(cls.queued_sound)
             cls.queued_sound = None
 
@@ -93,7 +103,7 @@ class Fight:
                 else:
                     cls.queued_sound = State.players[not Fight.attacker].parry_sound
                     print("\n", not Fight.aggressive, " parry!\n")
-                cls.attacker = not cls.attacker
+                cls.switchAttacker()
                 cls.aggressive = True
                 return
             else: # Otherwise, save last attack
@@ -111,7 +121,8 @@ class Fight:
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
                         print("\nhit!\n")
-                        cls.attacker = not cls.attacker
+                        cls.switchAttacker()
+                        cls.successful_hits += 1
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge

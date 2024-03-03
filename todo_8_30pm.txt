@@ -12,3 +12,4 @@ FEATURES
 DEVPOST/DOCUMENTATION
 - devpost and readme and tutorial
 - go through code and add documentation if we want
+- remove random prints
