@@ -3,7 +3,7 @@
 
 MAX_STANCE_MEMORY = 16
 MAX_FINISHER = 12
-FINISHER_SEQUENCES = { "Ciaran" : ["n", "s", "e" "w", "nw", "se", "ne", "sw", "nw", "se", "w", "e"]\
+FINISHER_SEQUENCES = { "Ciaran" : [["n", "s"], ["e", "w"], ["nw", "se"], ["ne", "sw"], ["nw", "se"], ["e", "w"]]\
                       }
 
 # Visual Settings
