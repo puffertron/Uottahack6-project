@@ -58,9 +58,9 @@ class Fight:
             audio.player_voices[player].play(State.players[player].player_chord[0])
             #print("\nattack!\n")
         elif player == 0:
-            audio.player_voices[player].play(State.players[0].player_note[0])
+            audio.player_voices[player].play(State.players[0].getNote())
         else:
-            audio.player_voices[player].play(State.players[1].player_note[0])
+            audio.player_voices[player].play(State.players[1].getNote())
  
     @classmethod
     def roundEnd():

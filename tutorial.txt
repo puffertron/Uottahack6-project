@@ -1,1 +1,19 @@
 TODO - explain how game works
+
+The game consists of 3 rounds each with a series of duels. 
+Each duel has one attacking player and one defending player.
+Every alternating beat the attacker attacks by stepping on one or two of the front pads,
+every other beat the defender has to step on the corresponding back pads to defend.
+Steps are only registered as valid inputs if on the beat (listen to the metronome)
+If at any point either player makes a mistake the duel ends and attacker and defender switch.
+If a player wins two more duels than the other player, they win the match and a new match begins, best 2 out of 3.
+
+
+Possible results of duel:
+-Attacker misses beat or doesn't attack: 'Fumble', defender becomes attacker, pauses then attacker can initiate next duel
+-Defender misses beat or doesn't block attack: 'Hit', Attacker wins duel, defender becomes attacker, pauses then attacker can initiate next duel
+-Defender steps on corresponding attacking pads at same time as attacker: 'Parry', Defender becomes attacker immediately and must immediately do attack, no pause, duel continues with changed position
+
+
+At the end of the game you can do a finisher. Whoever won can hit up to 12 pads with any timing building up a creshendo.
+There are a few special combos of pad presses that play a super secret special finisher audio.
