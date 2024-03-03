@@ -15,7 +15,10 @@ METRONOME_SOUND_FILE = "sounds/kick.wav"
 MISS_SOUND_FILE = "sounds/buzzer.wav"
 
 # Secific to players
-P0NOTE_FILE = "sounds/kick.wav"
+P0NOTE_FILE0 = "sounds/synthnote0.wav"
+P0NOTE_FILE1 = "sounds/synthnote1.wav"
+P0NOTE_FILE2 = "sounds/synthnote2.wav"
+P0NOTE_FILE3 = "sounds/synthnote3.wav"
 P1NOTE_FILE = "sounds/kick.wav"
 P0CHORD_FILE = "sounds/hithigh.wav"
 P1CHORD_FILE = "sounds/hitlow.wav"

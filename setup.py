@@ -12,7 +12,12 @@ def setup():
     State.players = [State.player0,State.player1]
 
     # Add sounds to players
-    State.player0.player_note = [pg.mixer.Sound(config.P0NOTE_FILE)]
+    State.player0.player_note = [
+        pg.mixer.Sound(config.P0NOTE_FILE0),
+        pg.mixer.Sound(config.P0NOTE_FILE1),
+        pg.mixer.Sound(config.P0NOTE_FILE2),
+        pg.mixer.Sound(config.P0NOTE_FILE3)
+        ]
     State.player1.player_note = [pg.mixer.Sound(config.P1NOTE_FILE)]
     State.player0.player_chord = [pg.mixer.Sound(config.P0CHORD_FILE)]
     State.player1.player_chord = [pg.mixer.Sound(config.P1CHORD_FILE)]
