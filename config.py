@@ -45,11 +45,13 @@ P1WIN_SOUND_FILE = "sounds/voicelines/player2win.wav"
 SCORE_RESET_SOUND_FILE = "sounds/voicelines/scorereset.wav"
 FIGHT_SOUND_FILE = "sounds/voicelines/fight.wav"
 
-ROUND_SOUND_FILES = ["sounds/voicelines/round1.wav","sounds/voicelines/round2.wav","sounds/voicelines/finalround.wav"]
+ROUND_SOUND_FILES = ["sounds/voicelines/round1fight.wav","sounds/voicelines/round2fight.wav","sounds/voicelines/round3fight.wav"]
 
 FINISH_THEM_SOUND_FILE = "sounds/voicelines/TODO" #TODO
 
 BACKTRACK_FILE = "sounds/backing_loop.wav"
+P0BACKTRACK_FILE = "sounds/synth_backing.wav"
+P1BACKTRACK_FILE = "sounds/drum_backing.wav"
 
 #Chromatic Scale
 CHROMATIC_SCALE = [
@@ -67,7 +69,7 @@ CHROMATIC_SCALE = [
 "sounds/chromatic_scale/G-Guitar.wav"
 ]
 
-GENERIC_FINISHER_EXPLOSION = "explosionsfx.mp3"
+GENERIC_FINISHER_EXPLOSION = "sounds/explosionsfx.mp3"
 
 # Audio
 BPM = 120 #1000ms per beat

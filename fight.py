@@ -25,7 +25,12 @@ class Fight:
     def switchAttacker(cls):
         """Called when fumble or parry"""
         cls.attacker = not cls.attacker
-        # TODO - add backing track stuff
+        if cls.attacker == 1:
+            audio.background_p0.set_volume(0)
+            audio.background_p1.set_volume(1)
+        else:
+            audio.background_p0.set_volume(1)
+            audio.background_p1.set_volume(0)
 
     @classmethod
     def startWaiting(cls):
@@ -71,7 +76,6 @@ class Fight:
         round_num = State.player0_score + State.player1_score
         audio.narrator.queue(audio.round_sounds[round_num])
         cls.startWaiting()
-        audio.narrator.queue(audio.fight_sound)
         cls.score = 0
 
     @classmethod
@@ -161,7 +165,7 @@ class Fight:
                     if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         # dodged = False
-                        cls.queued_sound = State.players[not Fight.attacker].hit_sound
+                        cls.queued_sound = State.players[Fight.attacker].hit_sound
                         #print("\nhit!\n")
                         cls.score += (-1)**cls.attacker
                         cls.switchAttacker()

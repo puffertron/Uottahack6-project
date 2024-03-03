@@ -27,6 +27,8 @@ def main():
     
     clock.tick()
     audio.background.play(audio.backtrack, loops=-1)
+    audio.background_p0.play(audio.p0_backtrack, loops=-1)
+    audio.background_p1.play(audio.p1_backtrack, loops=-1)
     Fight.roundStart()
 
     while running:
