@@ -2,6 +2,7 @@ import config
 import pygame as pg
 
 pg.mixer.init()
+pg.mixer.set_num_channels(20)
 
 # metronome_sound = pg.mixer.Sound(config.METRONOME_SOUND_FILE)
 beep_sound = pg.mixer.Sound(config.BEEP_SOUND_FILE)
@@ -27,6 +28,8 @@ buzzer = pg.mixer.Channel(4)
 background = pg.mixer.Channel(5)
 narrator = pg.mixer.Channel(6)
 chromatic_scale = pg.mixer.Channel(7)
+background_p0 = pg.mixer.Channel(8)
+background_p1 = pg.mixer.Channel(9)
 
 
 player_voices = [player0_voice, player1_voice]

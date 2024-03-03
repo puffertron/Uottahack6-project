@@ -69,7 +69,7 @@ CHROMATIC_SCALE = [
 "sounds/chromatic_scale/G-Guitar.wav"
 ]
 
-GENERIC_FINISHER_EXPLOSION = "explosionsfx.mp3"
+GENERIC_FINISHER_EXPLOSION = "sounds/explosionsfx.mp3"
 
 # Audio
 BPM = 120 #1000ms per beat
