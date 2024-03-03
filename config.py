@@ -37,6 +37,7 @@ P1ADVANTAGE_SOUND_FILE = "sounds/voicelines/advp2.wav"
 P0WIN_SOUND_FILE = "sounds/voicelines/player1win.wav"
 P1WIN_SOUND_FILE = "sounds/voicelines/player2win.wav"
 SCORE_RESET_SOUND_FILE = "sounds/voicelines/scorereset.wav"
+FIGHT_SOUND_FILE = "sounds/voicelines/fight.wav"
 
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 
