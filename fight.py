@@ -9,6 +9,7 @@ class Fight:
 
     # Gamemode 1: Dance battle
     attacker = 0 #0 or 1 to log which player is currently attacking
+    successful_hits = 0 # Counts up each time attacker lands hit, after 3 hits (when = 3), game is over
     aggressive = True
     waiting = True
     DODGES_FOR_ATTACKS= {"nw": "se",
@@ -18,6 +19,16 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     queued_sound = None
+
+    @classmethod
+    def switchAttacker(cls):
+        """Called when fumble or parry"""
+        cls.attacker = not cls.attacker
+        cls.successful_hits = 0
+        # TODO - add backing track stuff
+
+
+
     @classmethod
     def onBeat(cls):
         if cls.aggressive:
@@ -28,7 +39,10 @@ class Fight:
     @classmethod
     def onOffBeat(cls):
         if cls.queued_sound:
+<<<<<<< HEAD
             #print("----------------------------------------------------------------------------Queud sound was played!!! it was:", cls.queued_sound, "---------------------------------------------------------------------")
+=======
+>>>>>>> a43dfe52f02fc97d61638c1a1d54b7fbe59985e7
             audio.SFX.play(cls.queued_sound)
             cls.queued_sound = None
 
@@ -94,7 +108,7 @@ class Fight:
                 else:
                     cls.queued_sound = State.players[not Fight.attacker].parry_sound
                     print("\n", not Fight.aggressive, " parry!\n")
-                cls.attacker = not cls.attacker
+                cls.switchAttacker()
                 cls.aggressive = True
                 return
             else: # Otherwise, save last attack
@@ -111,8 +125,14 @@ class Fight:
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
+<<<<<<< HEAD
                         #print("\nhit!\n")
                         cls.attacker = not cls.attacker # Attacker should stay the same
+=======
+                        print("\nhit!\n")
+                        cls.switchAttacker()
+                        cls.successful_hits += 1
+>>>>>>> a43dfe52f02fc97d61638c1a1d54b7fbe59985e7
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
