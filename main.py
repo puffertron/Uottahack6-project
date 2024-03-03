@@ -87,8 +87,9 @@ def main():
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
         # on half-beat
-        if time_since_beat > (ms_per_beat/2):
+        if (not half_beat_played) and (time_since_beat > (ms_per_beat/2)):
             Fight.onOffBeat()
+            half_beat_played = True
 
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
