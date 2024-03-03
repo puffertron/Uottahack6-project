@@ -26,9 +26,9 @@ def setup():
     State.player1.fumble_sound = pg.mixer.Sound(config.P1FUMBLE_SOUND_FILE)
 
     # Set channel volumes
-    audio.player0_voice.set_volume(0.25)
-    audio.player1_voice.set_volume(0.25)
-    audio.SFX.set_volume(1)
-    audio.metronome.set_volume(0.4)
-    audio.buzzer.set_volume(0.25)
-    audio.background.set_volume(0.4)
+    audio.player0_voice.set_volume(0.4)
+    audio.player1_voice.set_volume(0.4)
+    audio.SFX.set_volume(2)
+    audio.metronome.set_volume(0.2)
+    audio.buzzer.set_volume(0.1)
+    audio.background.set_volume(0.3)
