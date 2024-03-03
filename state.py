@@ -7,6 +7,9 @@ class State:
     player0: Player = None
     player1: Player = None
     players: list[Player] = []
+    winner = 2
+    player0_score = 0
+    player1_score = 0
 
     # Pause is used when hit or fumble happens and attacker is swapped
     pause_for_beats = 0 # If this is non-zero, counts down by one every beat, for whole beat ignores input and stops metronome (onBeat())
