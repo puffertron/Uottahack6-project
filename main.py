@@ -19,12 +19,8 @@ def main():
     ms_per_beat = 60000 / config.BPM
     time_since_beat = 0 #Goes from 0 to ms_per_beat
     updated_this_beat = True #goes to false when time_since_beat resets, goes to true when Fight happens
-    half_beat_played = True #goes to false when time_since_beat resets, goes to true when half-beat function happens happens
     stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
     
-    clock.tick()
-    audio.background.play(audio.backtrack, loops=-1)
-    print(time_since_beat)
 
     while running:
         
@@ -48,15 +44,12 @@ def main():
         for player in [0,1]:
             playerInput = inputs[player]
             if len(playerInput) != 0:
-                print("Input received:", time_since_beat)
                 if (time_since_beat < (config.PERFECT_TIME_TOL+config.TIME_OFFSET)) or ((time_since_beat-ms_per_beat) > (-config.PERFECT_TIME_TOL+config.TIME_OFFSET)):
                     print("You did PERFECT!!!!!!")
                     stances[player]["perfect"] += playerInput
-                    Fight.onInput(playerInput, player)
-                elif (time_since_beat < config.GOOD_TIME_TOL+config.TIME_OFFSET) or ((time_since_beat-ms_per_beat) > (-config.GOOD_TIME_TOL+config.TIME_OFFSET)):
+                elif (time_since_beat < config.GOOD_TIME_TOL) or ((time_since_beat-ms_per_beat) > -config.GOOD_TIME_TOL):
                     print("Pretty Good!")
                     stances[player]["good"] += playerInput
-                    Fight.onInput(playerInput, player)
                 else:
                     print("nah, you missed")
                     audio.buzzer.play(audio.miss_sound)
@@ -65,16 +58,13 @@ def main():
 
         
 
-        #print(time_since_beat)
+        print(time_since_beat)
         # DO THINGS AT SPECIFIC TIMES
         # bit after beat, Send input to fight function every beat        
-        if (not updated_this_beat) and (time_since_beat > config.GOOD_TIME_TOL + config.TIME_OFFSET):
+        if (not updated_this_beat) and (time_since_beat > config.PERFECT_TIME_TOL):
             # Only ever update after window where input is accepted
             updated_this_beat = True
-
-            print("before danceBattle time: ", time_since_beat)
             Fight.danceBattle(stances)
-            print("after danceBattle time: ", time_since_beat)
             print()
             #TODO - deal with return value and move it to proper place
             # if returnValue == True:
@@ -86,17 +76,13 @@ def main():
             # Clear stances
             stances:tuple[dict[str: list[str]], dict[str: list[str]]] = ({"perfect":[], "good":[], "held":[]}, {"perfect":[], "good":[], "held":[]})
 
-        # on half-beat
-        if time_since_beat > (ms_per_beat/2):
-            Fight.onOffBeat()
-
+        
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            #audio.ticker.play(audio.metronome_sound) # Not used anymore, in Fight.onBeat()
-            Fight.onBeat()
+            #audio.ticker.play(audio.metronome_sound)
+            Fight.metronome()
             updated_this_beat = False
-            half_beat_played = False
         
 
 
