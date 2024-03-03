@@ -7,7 +7,8 @@ pg.joystick.init()
 input_names = [
         "nw",   "n", "ne",
         "w", "m", "e",
-        "sw", "s", "se"
+        "sw", "s", "se",
+        "start", "select"
         ]
 
 #get any joysticks that are connected to the machine

@@ -65,7 +65,8 @@ class Fight:
  
     @classmethod
     def finisher(cls, winner):
-        State.winner = winner    @classmethod
+        #audio.narrator.queue(audio.finish_them_sound)
+        State.winner = winner
     
     @classmethod
     def roundStart(cls):

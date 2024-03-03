@@ -42,6 +42,8 @@ FIGHT_SOUND_FILE = "sounds/voicelines/fight.wav"
 
 ROUND_SOUND_FILES = ["sounds/voicelines/round1.wav","sounds/voicelines/round2.wav","sounds/voicelines/finalround.wav"]
 
+FINISH_THEM_SOUND_FILE = "sounds/voicelines/TODO" #TODO
+
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 
 
