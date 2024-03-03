@@ -1,0 +1,7 @@
+Known bugs with the project
+
+
+
+
+Occasionally DDR pads stop giving input for awhile. Stopping program and restarting it seems to fix it
+    - We think this is hardware, just loose cable connecting to computer
