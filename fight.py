@@ -102,21 +102,21 @@ class Fight:
         else: # For defense beats
             print("defending beat. Dodges:",dodges)
 
-            dodged = True
+            # dodged = True
             if State.players[cls.attacker].history.getHead():
                 for attack in State.players[cls.attacker].history.getHead().getData(): # Check if defender successfully dodged
                     print(attack)
                     if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
-                        dodged = False
-                        queued_sound = State.players[not Fight.attacker].hit_sound
+                        # dodged = False
+                        cls.queued_sound = State.players[not Fight.attacker].hit_sound
                         print("\nhit!\n")
                         cls.attacker = not cls.attacker
                         cls.aggressive = True
                         cls.waiting = True
                         return # If failed to dodge
 
-            queued_sound = State.players[not Fight.attacker].dodge_sound
+            cls.queued_sound = State.players[not Fight.attacker].dodge_sound
             print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return
