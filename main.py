@@ -70,14 +70,14 @@ def main():
                 double_input = []
 
             #What happens when player 0 has won does and input
-            if State.winner == 0 and len(inputs[0]):
+            if State.winner == 0 and len(inputs[0]) > 0:
                 finisher_counter += 1
                 double_input.append(inputs[0])
                 #play incrementing audio
                 audio.chromatic_scale.play(config.CHROMATIC_SCALE[finisher_counter])
             
             #What happens when player 1 has won does and input
-            if State.winner == 1 and len(inputs[1]):
+            if State.winner == 1 and len(inputs[1]) > 0:
                 finisher_counter += 1
                 double_input.append(inputs[1])
                 #play incrementing audio
