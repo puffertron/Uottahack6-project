@@ -7,5 +7,6 @@ class State:
     player0: Player = None
     player1: Player = None
     players: list[Player] = []
+    winner = 2
 
     #TODO - add combo things

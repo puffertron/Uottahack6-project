@@ -57,7 +57,9 @@ class Fight:
         else:
             audio.player_voices[player].play(State.players[1].player_note[0])
  
-
+    @classmethod
+    def finisher(cls, winner):
+        State.winner = winner
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):

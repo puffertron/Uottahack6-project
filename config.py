@@ -2,6 +2,8 @@
 
 
 MAX_STANCE_MEMORY = 16
+MAX_FINISHER = 12
+FINISHER_SEQUENCES = {}
 
 # Visual Settings
 windowWidth = 500 #pxl?
