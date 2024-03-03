@@ -29,7 +29,7 @@ class Fight:
 
     @classmethod
     def startWaiting(cls):
-        """Called when fumble or hit"""
+        """Called when fumble or hit or parry"""
         cls.waiting = True
         State.pause_for_beats = 4 # Does 4 beats of no metronome or inputs
 
@@ -57,9 +57,9 @@ class Fight:
             audio.player_voices[player].play(State.players[player].player_chord[0])
             #print("\nattack!\n")
         elif player == 0:
-            audio.player_voices[player].play(State.players[0].player_note[0])
+            audio.player_voices[player].play(State.players[0].getNote())
         else:
-            audio.player_voices[player].play(State.players[1].player_note[0])
+            audio.player_voices[player].play(State.players[1].getNote())
  
     @classmethod
     def finisher(cls, winner):
@@ -139,10 +139,10 @@ class Fight:
                 if len(attacks) == 0: # Attacker fumbled
                     cls.queued_sound = State.players[Fight.attacker].fumble_sound
                     print("\nplayer", Fight.aggressive, " fumbled!\n")
-                    cls.startWaiting()
                 else:
                     cls.queued_sound = State.players[not Fight.attacker].parry_sound
                     print("\n", not Fight.aggressive, " parry!\n")
+                cls.startWaiting()
                 cls.switchAttacker()
                 cls.aggressive = True
                 return

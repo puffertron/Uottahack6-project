@@ -80,7 +80,7 @@ def main():
                 #play incrementing audio
             
             #Determine what finisher sound to play
-            if finisher_sequence in config.FINISHER_SEQUENCES:
+            if finisher_sequence in config.FINISHER_SEQUENCES.values():
                 #play specific audio
                 #audio.config.FINISHER_SEQUENCES.get(finisher_sequence.key)
                 print()
