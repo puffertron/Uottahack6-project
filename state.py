@@ -9,4 +9,8 @@ class State:
     players: list[Player] = []
     winner = 2
 
+    # Pause is used when hit or fumble happens and attacker is swapped
+    pause_for_beats = 0 # If this is non-zero, counts down by one every beat, for whole beat ignores input and stops metronome (onBeat())
+
     #TODO - add combo things
+

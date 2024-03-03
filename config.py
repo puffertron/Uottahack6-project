@@ -16,11 +16,11 @@ METRONOME_SOUND_FILE = "sounds/womp.wav"
 METRONOME_SOUND_FILE = "sounds/kick.wav"
 MISS_SOUND_FILE = "sounds/buzzer.wav"
 
-# Secific to players
+# Specific to players
 P0NOTE_FILE = "sounds/kick.wav"
 P1NOTE_FILE = "sounds/kick.wav"
 P0CHORD_FILE = "sounds/hithigh.wav"
-P1CHORD_FILE = "sounds/kick.wav"
+P1CHORD_FILE = "sounds/hithigh.wav"
 P0HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 P1HIT_SOUND_FILE = "sounds/big_cymbal.wav"
 P0PARRY_SOUND_FILE = "sounds/clink.wav"
@@ -30,6 +30,13 @@ P1FUMBLE_SOUND_FILE = "sounds/womp.wav"
 # ATTACK_SOUND_FILE = "sounds/kick.wav"
 P0DODGE_SOUND_FILE = "sounds/woosh.wav"
 P1DODGE_SOUND_FILE = "sounds/woosh.wav"
+
+# Narrator sounds (players += 1)
+P0ADVANTAGE_SOUND_FILE = "sounds/voicelines/advp1.wav"
+P1ADVANTAGE_SOUND_FILE = "sounds/voicelines/advp2.wav"
+P0WIN_SOUND_FILE = "sounds/voicelines/player1win.wav"
+P1WIN_SOUND_FILE = "sounds/voicelines/player2win.wav"
+SCORE_RESET_SOUND_FILE = "sounds/voicelines/scorereset.wav"
 
 BACKTRACK_FILE = "sounds/backing_loop.wav"
 

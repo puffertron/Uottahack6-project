@@ -75,21 +75,22 @@ def main():
                 
         # When new input, check to see if at great time
         # TODO - add ability for HELD stances
-        for player in [0,1]:
-            playerInput = inputs[player]
-            if len(playerInput) != 0:
-                print("Input received:", time_since_beat)
-                if (time_since_beat < (config.PERFECT_TIME_TOL+config.TIME_OFFSET)) or ((time_since_beat-ms_per_beat) > (-config.PERFECT_TIME_TOL+config.TIME_OFFSET)):
-                    print("You did PERFECT!!!!!!")
-                    stances[player]["perfect"] += playerInput
-                    Fight.onInput(playerInput, player)
-                elif (time_since_beat < config.GOOD_TIME_TOL+config.TIME_OFFSET) or ((time_since_beat-ms_per_beat) > (-config.GOOD_TIME_TOL+config.TIME_OFFSET)):
-                    print("Pretty Good!")
-                    stances[player]["good"] += playerInput
-                    Fight.onInput(playerInput, player)
-                else:
-                    print("nah, you missed")
-                    audio.buzzer.play(audio.miss_sound)
+        if State.pause_for_beats == 0: # only acknowledge inputs if not paused
+            for player in [0,1]:
+                playerInput = inputs[player]
+                if len(playerInput) != 0:
+                    #print("Input received:", time_since_beat)
+                    if (time_since_beat < (config.PERFECT_TIME_TOL+config.TIME_OFFSET)) or ((time_since_beat-ms_per_beat) > (-config.PERFECT_TIME_TOL+config.TIME_OFFSET)):
+                        #print("You did PERFECT!!!!!!")
+                        stances[player]["perfect"] += playerInput
+                        Fight.onInput(playerInput, player)
+                    elif (time_since_beat < config.GOOD_TIME_TOL+config.TIME_OFFSET) or ((time_since_beat-ms_per_beat) > (-config.GOOD_TIME_TOL+config.TIME_OFFSET)):
+                        #print("Pretty Good!")
+                        stances[player]["good"] += playerInput
+                        Fight.onInput(playerInput, player)
+                    else:
+                        #print("nah, you missed")
+                        audio.buzzer.play(audio.miss_sound)
 
         
 
@@ -102,9 +103,9 @@ def main():
             # Only ever update after window where input is accepted
             updated_this_beat = True
 
-            print("before danceBattle time: ", time_since_beat)
+            #print("before danceBattle time: ", time_since_beat)
             Fight.danceBattle(stances)
-            print("after danceBattle time: ", time_since_beat)
+            #print("after danceBattle time: ", time_since_beat)
             print()
             #TODO - deal with return value and move it to proper place
             # if returnValue == True:
@@ -124,8 +125,12 @@ def main():
         # on beat, play metronome
         if time_since_beat > ms_per_beat:
             time_since_beat -= ms_per_beat
-            #audio.ticker.play(audio.metronome_sound) # Not used anymore, in Fight.onBeat()
-            Fight.onBeat()
+
+            if State.pause_for_beats == 0: # pause_for_beats freezes game, stopping metronome and inputs
+                Fight.onBeat()
+            elif State.pause_for_beats > 0:
+                State.pause_for_beats -= 1
+
             updated_this_beat = False
             off_beat_played = False
         

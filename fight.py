@@ -19,13 +19,19 @@ class Fight:
                            "n": "n",
                            "ne": "nw"}
     queued_sound = None
+    score = 0
 
     @classmethod
     def switchAttacker(cls):
         """Called when fumble or parry"""
         cls.attacker = not cls.attacker
-        cls.successful_hits = 0
         # TODO - add backing track stuff
+
+    @classmethod
+    def startWaiting(cls):
+        """Called when fumble or hit"""
+        cls.waiting = True
+        State.pause_for_beats = 4 # Does 4 beats of no metronome or inputs
 
 
 
@@ -51,7 +57,7 @@ class Fight:
 
         if player == cls.attacker and is_attack:
             audio.player_voices[player].play(State.players[player].player_chord[0])
-            print("\nattack!\n")
+            #print("\nattack!\n")
         elif player == 0:
             audio.player_voices[player].play(State.players[0].player_note[0])
         else:
@@ -59,7 +65,22 @@ class Fight:
  
     @classmethod
     def finisher(cls, winner):
-        State.winner = winner
+        State.winner = winner    @classmethod
+
+    @classmethod
+    def roundEnd(cls):
+        if cls.score > 1:
+            #cls.finisher(0)
+            audio.narrator.play(State.player1.win_sound)
+        elif cls.score < -1:
+            #cls.finisher(1)
+            audio.narrator.play(State.player0.win_sound)
+        elif cls.score == 1:
+            audio.narrator.play(State.player1.advantage_sound)
+        elif cls.score == -1:
+            audio.narrator.play(State.player0.advantage_sound)
+        else:
+            audio.narrator.play(audio.score_reset_sound)
 
     @classmethod
     def danceBattle(cls, inputs: tuple[dict[str: list[str]], dict[str: list[str]]]):
@@ -89,6 +110,7 @@ class Fight:
                 cls.waiting = False
                 #TODO - can add music change here
 
+
         if cls.aggressive: # For aggressive beats
             print("attacking beat. Attacks:",attacks,"Parries:",parries)
             parried = True
@@ -98,10 +120,10 @@ class Fight:
 
             if parried: # If attack was parried, lose advantage (also happens if no there was no attack)
                 State.players[cls.attacker].history.insertAtFront([])
-                if len(attacks) == 0:
+                if len(attacks) == 0: # Attacker fumbled
                     cls.queued_sound = State.players[Fight.attacker].fumble_sound
                     print("\nplayer", Fight.aggressive, " fumbled!\n")
-                    cls.waiting = True
+                    cls.startWaiting()
                 else:
                     cls.queued_sound = State.players[not Fight.attacker].parry_sound
                     print("\n", not Fight.aggressive, " parry!\n")
@@ -117,19 +139,20 @@ class Fight:
             # dodged = True
             if State.players[cls.attacker].history.getHead():
                 for attack in State.players[cls.attacker].history.getHead().getData(): # Check if defender successfully dodged
-                    print(attack)
+                    #print(attack)
                     if not (cls.DODGES_FOR_ATTACKS[attack] in dodges):
                         print("Player " + str(int(not cls.attacker)) + " got hit. Waiting for them to start.")
                         # dodged = False
                         cls.queued_sound = State.players[not Fight.attacker].hit_sound
-                        print("\nhit!\n")
+                        #print("\nhit!\n")
                         cls.switchAttacker()
-                        cls.successful_hits += 1
                         cls.aggressive = True
-                        cls.waiting = True
+                        cls.score += (-1)**cls.attacker
+                        cls.roundEnd()
+                        cls.startWaiting()
                         return # If failed to dodge
 
             cls.queued_sound = State.players[not Fight.attacker].dodge_sound
-            print("\ndodge!\n")
+            #print("\ndodge!\n")
         cls.aggressive = not cls.aggressive # Switch aggressive/defensive beat
         return

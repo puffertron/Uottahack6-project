@@ -10,11 +10,14 @@ miss_sound = pg.mixer.Sound(config.MISS_SOUND_FILE)
 
 backtrack = pg.mixer.Sound(config.BACKTRACK_FILE)
 
+score_reset_sound = pg.mixer.Sound(config.SCORE_RESET_SOUND_FILE)
+
 player0_voice = pg.mixer.Channel(0)
 player1_voice = pg.mixer.Channel(1)
 SFX = pg.mixer.Channel(2)
 metronome = pg.mixer.Channel(3)
 buzzer = pg.mixer.Channel(4)
 background = pg.mixer.Channel(5)
+narrator = pg.mixer.Channel(6)
 
 player_voices = [player0_voice, player1_voice]
