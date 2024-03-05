@@ -22,3 +22,8 @@
     float: left;
     padding-left: 100px;
 }
+
+.right{
+    position: absolute;
+    left: 1;
+}
