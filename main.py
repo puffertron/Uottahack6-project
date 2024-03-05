@@ -49,17 +49,12 @@ def main():
         inputs = [pad0_strings_input, pad1_strings_input]
 
         #Finisher Helper
-        #timer = pg.time.get_ticks()
         double_input = []
 
         #When a winner has been decided
         if State.winner != 2:
-            #p0_str_in = padinput.getPadInput(pad0, 0)[1]
-            #p1_str_in = padinput.getPadInput(pad1, 1)[1]
-            #finisher_inputs = [p0_str_in, p1_str_in]
-            #print(finisher_inputs)
             
-            #Restart the game
+            #TODO Restart the game
             if padinput.getPadInput(pad0, 0)[0] == 10:
                 State.winner = 2
                 finisher_sequence = []
@@ -72,21 +67,31 @@ def main():
                 finisher_sequence.append(double_input)
                 double_input = []
 
+            
             #What happens when player 0 has won does and input
-            if State.winner == 0 and len(inputs[0]) > 0:
-                double_input.append(inputs[0])
-                #play incrementing audio
-                audio.chromatic_scale.play(audio.chromatic_scale_list[finisher_counter % 12])
-                finisher_counter += 1
+            elif State.winner == 0 and len(inputs[0]) > 0:
+                #Make error noise when chromatic scale is done playing
+                if(finisher_counter > 12):
+                    #do error noise (doesn't exist yet)
+                    print()
+                else:
+                    double_input.append(inputs[0])
+                    #play incrementing audio
+                    audio.chromatic_scale.play(audio.chromatic_scale_list[finisher_counter % 12])
+                    finisher_counter += 1
             
             #What happens when player 1 has won does and input
-            if State.winner == 1 and len(inputs[1]) > 0:
-                double_input.append(inputs[1])
-                #play incrementing audio
-                audio.chromatic_scale.play(audio.chromatic_scale_list[finisher_counter % 12])
-                finisher_counter += 1
+            elif State.winner == 1 and len(inputs[1]) > 0:
+                if(finisher_counter > 12):
+                    #do error noise (doesn't exist yet)
+                    print()
+                else:
+                    double_input.append(inputs[1])
+                    #play incrementing audio
+                    audio.chromatic_scale.play(audio.chromatic_scale_list[finisher_counter % 12])
+                    finisher_counter += 1
             
-            #Determine what finisher sound to play
+            #TODO Determine what finisher sound to play
             #if finisher_sequence in config.FINISHER_SEQUENCES.values():
                 #play specific audio
                 #audio.config.FINISHER_SEQUENCES.get(finisher_sequence.key)
