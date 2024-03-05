@@ -1,5 +1,5 @@
 # Uottahack6-project 
-Project: Feet Fighter: Deadly Dancing - Reloaded
+Project: Feet Fighter: Deadly Dancing - RE:loaded
 Date: March 1-3, 2024
 Authors: Ciaran McDonald-Jensen, Camila Restrepo, Kidane Gabay, Torben Hunnerup
 
