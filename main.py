@@ -5,7 +5,7 @@ import math
 from fight import Fight
 import audio
 from state import State
-
+import keyboard_input
 
 def main():
 
@@ -43,22 +43,30 @@ def main():
 
         # GET DDR INPUTS
         # Get newly pressed input (& what buttons were HELD TODO)
-        pad0, pad1, = padinput.setupPads()
+        #NOTE:Comment/Uncomment this line if you want to use pads
+        """ pad0, pad1, = padinput.setupPads()
         pad0_raw_input, pad0_strings_input = padinput.getPadInput(pad0, 0)
-        pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1, 1)
-        inputs = [pad0_strings_input, pad1_strings_input]
+        pad1_raw_input, pad1_strings_input = padinput.getPadInput(pad1, 1) 
+        inputs = [pad0_strings_input, pad1_strings_input]"""
+        player_0_data, player_1_data = keyboard_input.getKeyBoardInput()
+        keyboard_p0_raw_input, keyboard_p0_strings_input = player_0_data
+        keyboard_p1_raw_input, keyboard_p1_strings_input = player_1_data
+        inputs = [keyboard_p0_strings_input, keyboard_p1_strings_input]
+        
 
         #Finisher Helper
         double_input = []
 
         #When a winner has been decided
         if State.winner != 2:
-            
+
             #TODO Restart the game
-            if padinput.getPadInput(pad0, 0)[0] == 10:
+            if "start" in inputs[0] or "start" in inputs[1]:
                 State.winner = 2
                 finisher_sequence = []
                 finisher_counter = 0
+                State.player0_score = 0
+                State.player1_score = 0
                 #other things that need to be restart go here
 
             #When two inputs have been stored
@@ -72,7 +80,8 @@ def main():
             elif State.winner == 0 and len(inputs[0]) > 0:
                 #Make error noise when chromatic scale is done playing
                 if(finisher_counter > 12):
-                    #do error noise (doesn't exist yet)
+                    #do error noise (doesn't exist yet, current is placeholder)
+                    audio.buzzer.play(audio.miss_sound)
                     print()
                 else:
                     double_input.append(inputs[0])
@@ -83,7 +92,8 @@ def main():
             #What happens when player 1 has won does and input
             elif State.winner == 1 and len(inputs[1]) > 0:
                 if(finisher_counter > 12):
-                    #do error noise (doesn't exist yet)
+                    #do error noise (doesn't exist yet, current is placeholder)
+                    audio.buzzer.play(audio.miss_sound)
                     print()
                 else:
                     double_input.append(inputs[1])
@@ -99,6 +109,7 @@ def main():
             if finisher_counter == config.MAX_FINISHER:
                 #Play explosion/generic finisher sfx
                 audio.generic_finisher.play()
+                finisher_counter += 1
 
         else:  
             # When new input, check to see if at great time
@@ -167,7 +178,11 @@ def main():
         #UPDATE VISUALS
         screen.fill("purple")
 
-        padinput.drawPads(screen, (pad0_raw_input, pad1_raw_input), (pad0_strings_input, pad1_strings_input))
+        #Keyboard variant
+        padinput.drawPads(screen, (keyboard_p0_raw_input, keyboard_p1_raw_input), (keyboard_p0_strings_input, keyboard_p1_strings_input))
+        #Pad variant
+        #NOTE comment/uncomment this line if you want to use pads
+        #padinput.drawPads(screen, (pad0_raw_input, pad1_raw_input), (pad0_strings_input, pad1_strings_input))
 
         pg.display.flip()
         time_since_beat += clock.tick(120)
